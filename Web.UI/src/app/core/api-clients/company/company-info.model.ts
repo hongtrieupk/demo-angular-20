@@ -1,5 +1,54 @@
-export interface CompanyInfo {
-    id: string;
+export class CompanyInfo {
+    customerId: string;
     name: string;
-    importantInfo: string;
+    comment: string;
+    erpNumber: string;
+    orgNumber: string;
+    companyClassName: string;
+    primaryResponsibleName: string;
+    secondaryResponsibleName: string;
+    companyNetPromoterScore: number;
+    salesResponsibleName: string;
+    companyPrimaryContactId: string;
+    companyPrimaryContactName: string;
+    departmentName: string;
+    visitCity: string;
+    visitAddress: string;
+    phone: string;
+    web: string;
+    email: string;
+    numOfEmployees?: number;
+    accountingYear?: number;
+    revenue?: number;
+    profit?: number;
+    industryName: string;
+    industryCode: string;
+    invoiceDelivery: string;
+    emailInvoices: string[];
+    tAMName: string;
+    constructor() {
+        this.customerId = '';
+        this.name = '';
+        this.comment = '';
+        this.erpNumber = '';
+        this.orgNumber = '';
+        this.companyNetPromoterScore = 0;
+        this.companyClassName = '';
+        this.primaryResponsibleName = '';
+        this.secondaryResponsibleName = '';
+        this.salesResponsibleName = '';
+        this.companyPrimaryContactId = '';
+        this.companyPrimaryContactName = '';
+        this.departmentName = '';
+        this.visitCity = '';
+        this.visitAddress = '';
+        this.phone = '';
+        this.web = '';
+        this.email = '';
+        this.industryName = '';
+        this.industryCode = '';
+        this.invoiceDelivery = '';
+        this.emailInvoices = [];
+        this.tAMName = '';
+    }
 }

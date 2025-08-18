@@ -1,0 +1,39 @@
+// p-table TableModule
+.table-container {
+  .p-paginator {
+    position: relative;
+
+    .p-paginator-current {
+      position: absolute;
+      right: 0px;
+    }
+  }
+
+  // p-toggleswitch ToggleSwitchModule
+  .p-toggleswitch {
+    height: 30px;
+    width: 110px;
+  }
+
+  .p-toggleswitch-handle {
+    top: 30%;
+    height: 25px;
+    width: 55px;
+  }
+
+  .p-toggleswitch-slider {
+    border-radius: 0;
+  }
+  .p-toggleswitch .p-toggleswitch-handle {
+    inset-inline-start: 52px;
+    border-radius: 0;
+  }
+
+  .p-toggleswitch.p-toggleswitch-checked .p-toggleswitch-handle {
+    inset-inline-start: 3px;
+  }
+
+  .p-multiselect-option-group {
+    text-align: center;
+  }
+}

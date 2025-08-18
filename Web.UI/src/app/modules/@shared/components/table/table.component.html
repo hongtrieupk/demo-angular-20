@@ -1,0 +1,412 @@
+<p-table
+  #table
+  [value]="data() ?? []"
+  [columns]="selectedColumns"
+  [size]="size()"
+  showGridlines
+  class="[&_thead]:z-1"
+  [loading]="loading()"
+  (onHeaderCheckboxToggle)="onHeaderCheckboxToggle.emit($event)"
+  (onRowSelect)="onRowSelect.emit($event)"
+  (onRowUnselect)="onRowUnSelect.emit($event)"
+  (selectAllChange)="onSelectAllChange.emit($event)"
+  (selectionChange)="onSelectionChange.emit($event)"
+  [sortMode]="sortMode()"
+  (onSort)="handleSort($event)"
+  [customSort]="!sortByClient()"
+  [lazy]="lazy()"
+  [scrollable]="scrollable()"
+  [scrollHeight]="scrollHeight()"
+  [(selection)]="selectedRows"
+  [rowHover]="rowHover()"
+  [dataKey]="dataKey()"
+  [expandedRowKeys]="enableRowExpansion() ? (expandedRowKeys() ?? {}) : {}"
+  [rowExpandMode]="rowExpandMode()"
+  (onRowExpand)="onRowExpand.emit($event)"
+  [stripedRows]="stripedRows()"
+  [ngClass]="{
+    '[&_tbody>tr:first-child>td]:border-t-1': !showColumnHeader(),
+  }"
+>
+  @if (showColumnHeader()) {
+    <ng-template #header>
+      <tr>
+        @if (enableRowExpansion()) {
+          <th class="w-10 min-w-10 max-w-10"></th>
+        }
+        @if (showRowsSelectionByCheckbox()) {
+          <th>
+            <div
+              class="flex flex-row w-full h-full justify-center items-center"
+            >
+              <p-tableHeaderCheckbox />
+            </div>
+          </th>
+        }
+        @for (column of selectedColumns; track $index) {
+          <th
+            [ngClass]="getColumnHeaderClasses(column)"
+            [ngStyle]="{
+              width:
+                typeof column.width === 'number'
+                  ? column.width + 'px'
+                  : column.width,
+              'min-width':
+                typeof column.width === 'number'
+                  ? column.width + 'px'
+                  : column.width,
+              'max-width':
+                typeof column.maxWidth === 'number'
+                  ? column.maxWidth + 'px'
+                  : column.maxWidth,
+            }"
+            [pSortableColumn]="
+              isColumnSortable(column) && typeof column.dataKey === 'string'
+                ? column.dataKey
+                : undefined
+            "
+            [alignFrozen]="column.alignFrozen || 'right'"
+            pFrozenColumn
+            [frozen]="column.isFrozen ?? false"
+          >
+            <div
+              class="flex flex-row w-full h-full justify-between items-center"
+            >
+              {{ getColumnTitle(column) }}
+              <div>
+                @if (isColumnSortable(column)) {
+                  <p-sortIcon
+                    [field]="
+                      typeof column.dataKey === 'string'
+                        ? column.dataKey
+                        : undefined
+                    "
+                    class="ml-2"
+                  />
+                }
+              </div>
+            </div>
+          </th>
+        }
+        @if (showColumnsSelection() || showActionColumn()) {
+          <th class="min-w-10 w-10">
+            @if (showColumnsSelection()) {
+              <div class="w-full h-full flex justify-center items-center">
+                <p-multiselect
+                  [options]="columns()"
+                  [(ngModel)]="selectedColumns"
+                  appendTo="body"
+                  upI18n
+                  i18nKey="i18nTitleKey"
+                  [ngClass]="{
+                    'w-fit': true,
+                    'h-10': true,
+                    '[&>_.p-multiselect-label-container]:hidden': true,
+                    '[&_.p-overlay]:min-w-[200px]!': true,
+                    '[&_.p-overlay]:right-0!': true,
+                    '[&_.p-overlay]:left-[unset]!': true,
+                    'border-none': true,
+                    'bg-transparent': true,
+                    'shadow-none': true,
+                  }"
+                  (ngModelChange)="handleColumnsSelectionChange($event)"
+                >
+                </p-multiselect>
+              </div>
+            }
+          </th>
+        }
+        @if (showMoveRowButton()) {
+          <th class="w-10 min-w-10 max-w-10"></th>
+        }
+      </tr>
+    </ng-template>
+  }
+  <ng-template
+    #body
+    let-rowData
+    let-rowIndex="rowIndex"
+    let-expanded="expanded"
+    let-editing="editing"
+  >
+    <tr [ngClass]="getRowClasses(rowData, rowIndex)">
+      @if (enableRowExpansion()) {
+        <td>
+          <div class="flex flex-row w-full h-full justify-center items-center">
+            <p-button
+              type="button"
+              pRipple
+              [pRowToggler]="rowData"
+              [text]="true"
+              [rounded]="true"
+              [plain]="true"
+              [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"
+            />
+          </div>
+        </td>
+      }
+      @if (showRowsSelectionByCheckbox()) {
+        <td class="text-[13px] text-(--color-table-body-text) w-0 h-0">
+          <div class="flex flex-row w-full h-full justify-center items-center">
+            <p-tableCheckbox [value]="rowData" />
+          </div>
+        </td>
+      }
+
+      @for (
+        column of selectedColumns;
+        let columnIndex = $index;
+        track columnIndex
+      ) {
+        <td
+          [alignFrozen]="column.alignFrozen || 'right'"
+          pFrozenColumn
+          [frozen]="column.isFrozen ?? false"
+          class="w-0 h-0"
+          [ngClass]="getColumnClasses(rowData, column)"
+        >
+          <div
+            class="flex flex-row w-full h-full"
+            [ngClass]="{
+              'justify-start': column.cellHorizontalAlign === 'left',
+              'justify-center': column.cellHorizontalAlign === 'center',
+              'justify-end': column.cellHorizontalAlign === 'right',
+              'items-start': column.cellVerticalAlign === 'top',
+              'items-center':
+                !column.cellVerticalAlign ||
+                column.cellVerticalAlign === 'center',
+              'items-end': column.cellVerticalAlign === 'bottom',
+              'gap-1': true,
+            }"
+          >
+            <ng-container
+              [ngTemplateOutlet]="getCellTemplateOutlet(rowData, column)"
+              [ngTemplateOutletContext]="
+                getCellTemplateOutletContext(rowData, column)
+              "
+            ></ng-container>
+          </div>
+        </td>
+      }
+
+      @if (showColumnsSelection() || showActionColumn()) {
+        <td
+          [alignFrozen]="alignFrozenActionButton()"
+          pFrozenColumn
+          [frozen]="isFrozenActionButton()"
+        >
+          @if (showActionColumn()) {
+            <div class="flex flex-row gap-4 px-2 justify-center items-center">
+              @if (showEditButton()) {
+                <i
+                  class="pi pi-pen-to-square text-[13px] cursor-pointer text-[#337ab7]"
+                  (click)="onClickedEditButton.emit(rowData)"
+                ></i>
+              }
+              @if (showDeleteButton()) {
+                <i
+                  class="pi pi-trash text-[13px] cursor-pointer text-red-600"
+                  (click)="onClickedDeleteButton.emit(rowData)"
+                ></i>
+              }
+              @if (showLeftButton()) {
+                <i
+                  class="pi pi-arrow-left text-[13px] cursor-pointer text-gray-600"
+                  (click)="onClickedLeftButton.emit(rowData)"
+                ></i>
+              }
+              @if (showRightButton()) {
+                <i
+                  class="pi pi-arrow-right text-[13px] cursor-pointer text-gray-600"
+                  (click)="onClickedRightButton.emit(rowData)"
+                ></i>
+              }
+
+              @if (showGiftButton()) {
+                <i
+                  class="pi pi-gift text-[13px] cursor-pointer text-[#337ab7]"
+                  (click)="onClickedGiftButton.emit(rowData)"
+                ></i>
+              }
+
+              <!-- additional action buttons -->
+              <ng-container
+                [ngTemplateOutlet]="actionButtonsTemplateRef()"
+                [ngTemplateOutletContext]="getRowTemplateOutletContext(rowData)"
+              ></ng-container>
+            </div>
+          }
+        </td>
+      }
+
+      @if (showMoveRowButton()) {
+        <td>
+          <div class="flex flex-row w-full h-full justify-center items-center">
+            <i class="pi pi-arrows-alt text-[13px] cursor-move"></i>
+          </div>
+        </td>
+      }
+    </tr>
+  </ng-template>
+  @if (expandedRowTemplateRef()) {
+    <ng-template #expandedrow let-rowData>
+      <ng-container
+        [ngTemplateOutlet]="expandedRowTemplateRef()"
+        [ngTemplateOutletContext]="getRowTemplateOutletContext(rowData)"
+      ></ng-container>
+    </ng-template>
+  }
+  @if (footerTemplateRef()) {
+    <ng-template #footer>
+      <ng-container [ngTemplateOutlet]="footerTemplateRef()"></ng-container>
+    </ng-template>
+  }
+  <ng-template #emptymessage>
+    <tr>
+      <td [colSpan]="getTotalColumnCount()">
+        @if (emptyMessageTemplateRef()) {
+          <ng-container
+            [ngTemplateOutlet]="emptyMessageTemplateRef()"
+          ></ng-container>
+        } @else {
+          <div class="text-center">
+            {{ "Message.NoDataDisplay" | translate }}
+          </div>
+        }
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<div class="flex flex-row items-center">
+  <div class="flex flex-row gap-2 my-2">
+    @if (showReloadButton()) {
+      <p-button
+        icon="pi pi-sync"
+        severity="primary"
+        [title]="'Table.RefreshTitle' | translate"
+        (onClick)="onClickedReloadButton.emit()"
+      ></p-button>
+    }
+
+    @if (showAddNewRowButton()) {
+      <p-button
+        icon="pi pi-plus"
+        severity="primary"
+        [title]="'Table.AddTitle' | translate"
+        (onClick)="onClickedAddNewRowButton.emit()"
+      ></p-button>
+      <p-button
+        icon="pi pi-save"
+        severity="secondary"
+        [title]="'Table.SaveTitle' | translate"
+        (onClick)="onClickedSaveNewRowsButton.emit()"
+      ></p-button>
+      <p-button
+        icon="pi pi-times"
+        severity="secondary"
+        [title]="'Table.CancelTitle' | translate"
+        (onClick)="onClickedCancelNewRowsButton.emit()"
+      ></p-button>
+    }
+  </div>
+
+  @if (showPaginator()) {
+    <p-paginator
+      class="grow"
+      [rows]="rows()"
+      [totalRecords]="totalRecords() ?? data()?.length ?? 0"
+      [rowsPerPageOptions]="rowsPerPageOptions()"
+      [first]="first()"
+      (onPageChange)="onPageChange.emit($event)"
+      [showJumpToPageInput]="showJumpToPageInput()"
+    />
+  }
+</div>
+
+<ng-template #cellTemplateCheckbox let-checked="checked">
+  <p-checkbox
+    [disabled]="true"
+    [binary]="true"
+    [ngModel]="checked"
+    class="[&_input]:z-[0]!"
+  ></p-checkbox>
+</ng-template>
+
+<ng-template
+  #cellTemplateLink
+  let-label="label"
+  let-routerLink="routerLink"
+  let-target="target"
+>
+  @if (target) {
+    <a
+      href="{{ routerLink }}"
+      target="{{ target }}"
+      [title]="label"
+      class="text-[#337ab7]"
+    >
+      {{ label }}
+    </a>
+  } @else {
+    <a routerLink="{{ routerLink }}" [title]="label" class="text-[#337ab7]">
+      {{ label }}
+    </a>
+  }
+</ng-template>
+
+<ng-template
+  #cellTemplateEmail
+  let-data="data"
+  let-row="row"
+  let-rowIndex="rowIndex"
+  let-column="column"
+  let-onClickEmail="onClickEmail"
+>
+  <a
+    class="cursor-pointer text-[#337ab7]"
+    (click)="onClickEmail?.(data, row, rowIndex)"
+    [title]="getEmail(row, column)"
+  >
+    {{ getEmail(row, column) }}
+  </a>
+</ng-template>
+
+<ng-template
+  #actionCellTemplate
+  let-label="label"
+  let-column="column"
+  let-onClick="onClick"
+  let-data="data"
+  let-row="row"
+  let-rowIndex="rowIndex"
+>
+  <a
+    class="cursor-pointer"
+    (click)="onClick?.(data, row, rowIndex)"
+    class="cursor-pointer text-[#337ab7]"
+  >
+    {{ label }}
+  </a>
+</ng-template>
+
+<ng-template #cellTemplateRawHtml let-row="row" let-column="column">
+  <div [innerHtml]="getRawHtmlCellContent(row, column)"></div>
+</ng-template>
+
+<ng-template #cellTemplateDefault let-row="row" let-column="column">
+  <span [title]="getDefaultCellContent(row, column)">
+    {{ getDefaultCellContent(row, column) }}
+  </span>
+</ng-template>
+
+<ng-template
+  #bodyCellEditorText
+  let-row="row"
+  let-column="column"
+  let-value="value"
+  let-onChange="onChange"
+>
+  <input pInputText [value]="value" (change)="onChange($event.target.value)" />
+</ng-template>
+<ng-content></ng-content>

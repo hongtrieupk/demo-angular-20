@@ -1,1 +1,47 @@
-<p>CompanyCardContactComponent works!</p>
+<p-panel [header]="'Company.Contacts' | translate" [toggleable]="true">
+  <div class="grid grid-cols-2">
+    <div>
+      <p-button
+        icon="pi pi-plus"
+        [label]="'Common.AddNew' | translate"
+        severity="info"
+        (onClick)="showCreateContactDialog()"
+      />
+    </div>
+    <div class="flex justify-end">
+      <span class="mr-[5px] pt-[8px]">{{
+        "Company.ShowOldContacts" | translate
+      }}</span>
+      <p-toggleswitch
+        [(ngModel)]="isShowOldContacts"
+        (onChange)="onToggleShowOldContacts()"
+      >
+        <ng-template #handle let-checked="checked">
+          <span>
+            {{
+              checked ? ("Common.Yes" | translate) : ("Common.No" | translate)
+            }}</span
+          >
+        </ng-template>
+      </p-toggleswitch>
+    </div>
+  </div>
+  <div class="pt-[10px]">
+    <up-table
+      [columns]="contactColumns"
+      [data]="contacts"
+      [rows]="20"
+      [lazy]="true"
+      [totalRecords]="totalRecords"
+      [showEditButton]="true"
+      [showDeleteButton]="true"
+      (onClickedEditButton)="showEditContactDialog($event)"
+      (onClickedDeleteButton)="confirmDeleteContact($event)"
+      (onPageChange)="pageChange($event)"
+      (onSort)="pageSort($event)"
+      name="company-cards-table-contact"
+      [rowClasses]="getRowClasses"
+    >
+    </up-table>
+  </div>
+</p-panel>

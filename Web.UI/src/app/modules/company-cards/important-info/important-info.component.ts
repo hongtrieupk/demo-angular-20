@@ -15,7 +15,7 @@ export class CompanyCardImportantInfoComponent {
     trustedHtmlInfoContent: SafeHtml;
     constructor(private sanitizer: DomSanitizer) {
         this.trustedHtmlInfoContent = this.sanitizer.bypassSecurityTrustHtml(
-            this.getCompanyInfo().importantInfo,
+            this.getCompanyInfo().comment,
         );
     }
 }

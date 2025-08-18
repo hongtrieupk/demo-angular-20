@@ -1,0 +1,22 @@
+<p-dialog
+  upDialog
+  header="{{ 'Common.ErrorTitleModal' | translate }}"
+  [(visible)]="errorNoInternetPopupService.visible"
+  position="top"
+  class="[&_.p-dialog]:w-[500px]"
+>
+  <div class="flex flex-col items-center gap-4" #dialogBody>
+    <span class="pi pi-exclamation-triangle text-6xl text-red-500"></span>
+    <div class="text-xl">
+      {{ "DialogCaption.NetworkConnectionError" | translate }}
+    </div>
+    <div class="text-gray-500 text-center">
+      {{ "Message.NetworkConnectionErrorMessage" | translate }}
+    </div>
+  </div>
+  <div #dialogFooter>
+    <p-button severity="primary" (onClick)="errorNoInternetPopupService.hide()">
+      {{ "Common.Ok" | translate | uppercase }}
+    </p-button>
+  </div>
+</p-dialog>

@@ -1,0 +1,16 @@
+@if (loadingService.loading) {
+  <div
+    class="flex flex-col justify-center items-center w-screen h-screen z-9999 fixed left-0 top-0"
+    [ngClass]="{
+      'bg-gray-400/50': !loadingService.isOpaque,
+      'bg-gray-400': loadingService.isOpaque,
+    }"
+  >
+    <p-progress-spinner ariaLabel="loading" />
+    @if (loadingService.message) {
+      <div>
+        <span>{{ loadingService.message }}</span>
+      </div>
+    }
+  </div>
+}

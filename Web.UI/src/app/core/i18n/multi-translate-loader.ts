@@ -12,9 +12,9 @@ class MultiTranslateHttpLoader implements TranslateLoader {
     constructor(private http: HttpClient) {}
 
     getTranslation(lang: string): Observable<any> {
-        const modules = ['', 'company'];
+        const modules = ['', 'company.', 'common.'];
         const fetchPromises = modules.map((module) =>
-            this.getTranslations(`./public/i18n/${module}.${lang}.json`),
+            this.getTranslations(`./i18n/${module}${lang}.json`),
         );
 
         return from(

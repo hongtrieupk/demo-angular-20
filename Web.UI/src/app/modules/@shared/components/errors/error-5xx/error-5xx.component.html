@@ -1,0 +1,23 @@
+<p-dialog
+  [(visible)]="error5xxService.visible"
+  position="top"
+  upDialog
+  header="{{ 'Common.ErrorTitleModal' | translate }}"
+>
+  <div class="flex flex-col items-center gap-4" #dialogBody>
+    <span class="pi pi-exclamation-triangle text-6xl text-red-500"></span>
+    <div class="text-xl">
+      {{ "GeneralText.AnInternalServerErrorOccurred" | translate }}
+    </div>
+    <div>{{ "ErrorMessage.ExceptionErrorMsg" | translate }}</div>
+  </div>
+  <div #dialogFooter>
+    <p-button
+      severity="primary"
+      (onClick)="error5xxService.hide()"
+      class="[&_button]:w-32"
+    >
+      {{ "Common.Ok" | translate | uppercase }}
+    </p-button>
+  </div>
+</p-dialog>
