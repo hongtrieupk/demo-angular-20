@@ -1,0 +1,174 @@
+<h4>
+  <i class="pi pi-fw pi-pen-to-square"></i> <a>{{ companyInfo.name }}</a>
+</h4>
+<div class="grid grid-cols-12 gap-2">
+  <div class="col-span-9">
+    <p-tabs value="important-info" scrollable>
+      <p-tablist class="tablist-content">
+        @for (tab of tabs; track tab.routerLink; let isLast = $last) {
+          <p-tab
+            [value]="tab.routerLink"
+            [routerLink]="tab.routerLink"
+            [ngClass]="{ 'last-tab': isLast }"
+          >
+            <i [class]="tab.icon"></i>
+            <span>{{ tab.title | translate }}</span>
+          </p-tab>
+        }
+      </p-tablist>
+      <p-tabpanels>
+        <router-outlet [routerOutletData]="companyInfo"></router-outlet>
+      </p-tabpanels>
+    </p-tabs>
+  </div>
+
+  <div class="col-span-3 px-5">
+    <div class="portlet-body py-7">
+      <div class="flex flex-row">
+        <div class="flex-5">
+          <label>{{ "CommonInfo.ERPNumber" | translate }}</label>
+        </div>
+        <div class="flex-7">101456</div>
+      </div>
+      <div class="flex flex-row">
+        <div class="flex-5">
+          <label>{{ "CommonInfo.OrgNumber" | translate }}</label>
+        </div>
+        <div class="flex-7">811141402</div>
+      </div>
+      <div class="flex flex-row">
+        <div class="flex-5">
+          <label>{{ "CommonInfo.Name" | translate }}</label>
+        </div>
+        <div class="flex-7">
+          {{ companyInfo.name }} <i class="pl-10 pi pi-briefcase"></i>
+        </div>
+      </div>
+      <div class="flex flex-row">
+        <div class="flex-5">
+          <label>{{ "CommonInfo.ImportantInfo" | translate }}</label>
+        </div>
+        <div class="flex-7"><i class="pi pi-comment"></i></div>
+      </div>
+      <div class="flex flex-row">
+        <div class="flex-5 bold">
+          <label>{{ "CommonInfo.CompanyClass" | translate }}</label>
+        </div>
+        <div class="flex-7 flex">
+          <b class="flex-8">Daughter company</b>
+          <div class="flex-4">
+            <img class="img-nps" src="/assets/img/nps/nps.png" />
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-row">
+        <div class="flex-5">
+          <label>{{ "CommonInfo.PrimaryContact" | translate }}</label>
+        </div>
+        <div class="flex-7"><a>Phong Man</a></div>
+      </div>
+      <div class="flex flex-row pt-5">
+        <div class="flex-5">
+          <label>{{ "CommonInfo.Primary" | translate }}</label>
+        </div>
+        <div class="flex-7">Thao Tran</div>
+      </div>
+      <div class="flex flex-row">
+        <div class="flex-5">
+          <label>{{ "CommonInfo.Second" | translate }}</label>
+        </div>
+        <div class="flex-7"></div>
+      </div>
+      <div class="flex flex-row">
+        <div class="flex-5">
+          <label>{{ "CommonInfo.Sales" | translate }}</label>
+        </div>
+        <div class="flex-7"></div>
+      </div>
+      <div class="flex flex-row">
+        <div class="flex-5">
+          <label>{{ "CommonInfo.Department" | translate }}</label>
+        </div>
+        <div class="flex-7">Trondheim</div>
+      </div>
+      <div class="flex flex-row">
+        <div class="flex-5">
+          <label>{{ "CommonInfo.VisitStreet" | translate }}</label>
+        </div>
+        <div class="flex-7">35 Pasteur</div>
+      </div>
+      <div class="flex flex-row">
+        <div class="flex-5">
+          <label>{{ "CommonInfo.VisitCity" | translate }}</label>
+        </div>
+        <div class="flex-7">0659</div>
+      </div>
+      <div class="flex flex-row">
+        <div class="flex-5">
+          <label>{{ "CommonInfo.Phone" | translate }}</label>
+        </div>
+        <div class="flex-7">101456</div>
+      </div>
+      <div class="flex flex-row">
+        <div class="flex-5">
+          <label>{{ "CommonInfo.Web" | translate }}</label>
+        </div>
+        <div class="flex-7"></div>
+      </div>
+      <div class="flex flex-row">
+        <div class="flex-5">
+          <label>{{ "CommonInfo.Email" | translate }}</label>
+        </div>
+        <div class="flex-7"><a>support&#64;abc.com</a></div>
+      </div>
+      <div class="flex flex-row">
+        <div class="flex-5">
+          <label>{{ "CommonInfo.Invoices" | translate }}</label>
+        </div>
+        <div class="flex-7">PDF By Email phuong&#64;abc.com</div>
+      </div>
+      <div class="flex flex-row pt-5">
+        <div class="flex-5">
+          <label>{{ "CommonInfo.AccountingYear" | translate }}</label>
+        </div>
+        <div class="flex-7"></div>
+      </div>
+      <div class="flex flex-row">
+        <div class="flex-5">
+          <label>{{ "CommonInfo.NumOfEmployees" | translate }}</label>
+        </div>
+        <div class="flex-7"></div>
+      </div>
+      <div class="flex flex-row">
+        <div class="flex-5">
+          <label>{{ "CommonInfo.Revenue" | translate }}</label>
+        </div>
+        <div class="flex-7 text-right">0</div>
+      </div>
+      <div class="flex flex-row">
+        <div class="flex-5">
+          <label>{{ "CommonInfo.Profit" | translate }}</label>
+        </div>
+        <div class="flex-7 text-right">0</div>
+      </div>
+      <div class="flex flex-row pt-5">
+        <div class="flex-5">
+          <label>{{ "CommonInfo.IndustryCode" | translate }}</label>
+        </div>
+        <div class="flex-7"></div>
+      </div>
+      <div class="flex flex-row">
+        <div class="flex-5">
+          <label>{{ "CommonInfo.IndustryName" | translate }}</label>
+        </div>
+        <div class="flex-7"></div>
+      </div>
+      <div class="flex flex-row pb-5">
+        <div class="flex-5">
+          <label>{{ "CommonInfo.TAM" | translate }}</label>
+        </div>
+        <div class="flex-7"></div>
+      </div>
+    </div>
+  </div>
+</div>

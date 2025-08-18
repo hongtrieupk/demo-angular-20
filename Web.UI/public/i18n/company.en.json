@@ -1,0 +1,42 @@
+{
+  "CompanyTabs": {
+    "ImportantInfo": "Important Info",
+    "Contacts": "Contacts",
+    "Activities": "Activities",
+    "Sales": "Sales",
+    "Marketing": "Marketing",
+    "HourAndProject": "Hours & Project",
+    "Services": "Services",
+    "WorkOrders": "Work Orders",
+    "Equipment": "Equipment",
+    "Orders": "Orders",
+    "Invoices": "Invoices",
+    "Ledger": "Ledger",
+    "History": "History"
+  },
+  "CommonInfo": {
+    "ERPNumber": "ERP Number",
+    "OrgNumber": "Org.nr",
+    "Name": "Name",
+    "ImportantInfo": "Important Info",
+    "CompanyClass": "Company Class",
+    "PrimaryContact": "Primary Contact",
+    "Primary": "Primary",
+    "Second": "Second",
+    "Sales": "Sales",
+    "Department": "Department",
+    "VisitStreet": "Visit Street",
+    "VisitCity": "Visit City",
+    "Phone": "Phone",
+    "Web": "Web",
+    "Email": "Email",
+    "Invoices": "Invoices",
+    "AccountingYear": "Accounting Year",
+    "NumOfEmployees": "Num.emp",
+    "Revenue": "Revenue",
+    "Profit": "Profit",
+    "IndustryCode": "Industry Code",
+    "IndustryName": "Industry Name",
+    "TAM": "TAM"
+  }
+}

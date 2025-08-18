@@ -1,0 +1,79 @@
+h4 {
+  color: #337ab7;
+
+  .pi-pen-to-square {
+    font-size: inherit;
+  }
+
+  a:hover {
+    cursor: pointer;
+  }
+
+  a:focus,
+  a:hover {
+    text-decoration: underline;
+  }
+}
+
+.tablist-content {
+  background-color: var(--p-tabs-tablist-background);
+}
+
+.p-tab {
+  font-weight: 100;
+}
+
+.last-tab {
+  width: 130px;
+}
+
+.flex {
+  div {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-bottom: 10px;
+  }
+}
+
+.portlet-body {
+  background-color: #cce6ff;
+
+  label {
+    margin-bottom: 5px;
+    font-size: 13px;
+    color: #7f8d94;
+    text-transform: uppercase;
+  }
+
+  .pi-briefcase {
+    color: #337ab7;
+    cursor: pointer;
+  }
+
+  .pi-comment {
+    color: #e26a6a;
+    cursor: pointer;
+  }
+
+  .img-nps {
+    cursor: pointer;
+    width: 32px;
+  }
+
+  a {
+    color: #23527c;
+  }
+
+  a:focus,
+  a:hover {
+    color: #23527c;
+    text-decoration: underline;
+  }
+}
+
+:host {
+  ::ng-deep .p-panel-header {
+    flex-direction: row-reverse;
+    justify-content: left;
+  }
+}
