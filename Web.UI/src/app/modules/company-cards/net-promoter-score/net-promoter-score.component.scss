@@ -1,0 +1,57 @@
+.nps-point {
+  text-align: center;
+  padding: 10px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #1e5161;
+}
+
+.nps-point-input {
+  text-align: center;
+  padding: 15px;
+}
+
+.nps-detractors-break-point {
+  position: relative;
+
+  :after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    height: 50%;
+    border-right: 2px solid #1e5161;
+    right: -1px;
+  }
+}
+
+.nps-detractors-ruler {
+  border-top: 2px #ee3558 solid;
+  height: 25px;
+}
+
+.nps-passives-ruler {
+  border-top: 2px solid #57b4af;
+}
+
+.nps-promoters-ruler {
+  border-top: 2px solid #8ec63e;
+}
+
+.nps-description {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 500;
+  color: #1e5161;
+}
+
+.emoji {
+  img {
+    margin: auto;
+  }
+}
+
+.comment-score {
+  display: block;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}

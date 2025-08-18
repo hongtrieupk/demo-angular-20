@@ -1,0 +1,96 @@
+<p-dialog
+  header="Net promoter score"
+  [position]="'top'"
+  [modal]="true"
+  [(visible)]="visible"
+  [style]="{ width: '75rem' }"
+>
+  <div class="mb-8" style="border-top: 1px solid rgb(239, 239, 239)">
+    <div>
+      <table style="width: 100%; table-layout: fixed">
+        <tbody>
+          <tr>
+            @for (
+              radioCheckboxValue of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+              track radioCheckboxValue
+            ) {
+              <td class="nps-point-input">
+                <input
+                  name="Score"
+                  style="cursor: pointer"
+                  type="radio"
+                  [ngModel]="selectedScore"
+                  [value]="radioCheckboxValue"
+                />
+              </td>
+            }
+          </tr>
+          <tr>
+            @for (score of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]; track score) {
+              <td class="emoji" (click)="setScore(score - 1)">
+                <img src="{{ getCompanyClassImageSrc(score) }}" width="32" />
+              </td>
+            }
+          </tr>
+          <tr>
+            <td class="nps-point">0</td>
+            <td class="nps-point">1</td>
+            <td class="nps-point">2</td>
+            <td class="nps-point">3</td>
+            <td class="nps-point">4</td>
+            <td class="nps-point">5</td>
+            <td class="nps-point nps-detractors-break-point">6</td>
+            <td class="nps-point">7</td>
+            <td class="nps-point nps-passives-break-point">8</td>
+            <td class="nps-point">9</td>
+            <td class="nps-point">10</td>
+          </tr>
+          <tr>
+            <td class="nps-detractors-ruler"></td>
+            <td class="nps-detractors-ruler"></td>
+            <td class="nps-detractors-ruler"></td>
+            <td class="nps-detractors-ruler"></td>
+            <td class="nps-detractors-ruler"></td>
+            <td class="nps-detractors-ruler"></td>
+            <td
+              class="nps-detractors-ruler"
+              style="border-right: 2px solid #1e5161"
+            ></td>
+            <td class="nps-passives-ruler"></td>
+            <td
+              class="nps-passives-ruler"
+              style="border-right: 2px solid #1e5161"
+            ></td>
+            <td class="nps-promoters-ruler"></td>
+            <td class="nps-promoters-ruler"></td>
+          </tr>
+          <tr>
+            <td colspan="7" class="nps-description">Detractors</td>
+            <td colspan="2" class="nps-description">Passives</td>
+            <td colspan="2" class="nps-description">Promoters</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="mt-[20px]">
+      <div>
+        <label class="comment-score">Comment</label>
+      </div>
+      <input type="text" [fluid]="true" pInputText />
+    </div>
+  </div>
+  <div class="flex justify-start gap-2">
+    <p-button
+      icon="pi pi-save"
+      label="Save & close"
+      severity="info"
+      (click)="close()"
+    />
+    <p-button
+      label="Cancel"
+      icon="pi pi-times"
+      severity="secondary"
+      (click)="close()"
+    />
+  </div>
+</p-dialog>

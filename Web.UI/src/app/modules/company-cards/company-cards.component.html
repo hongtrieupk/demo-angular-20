@@ -1,9 +1,9 @@
 <h4>
   <i class="pi pi-fw pi-pen-to-square"></i> <a>{{ companyInfo.name }}</a>
 </h4>
-<div class="grid grid-cols-12 gap-2">
+<div class="grid grid-cols-12 gap-2 table-container">
   <div class="col-span-9">
-    <p-tabs value="important-info" scrollable>
+    <p-tabs value="{{ selectedTab }}" scrollable>
       <p-tablist class="tablist-content">
         @for (tab of tabs; track tab.routerLink; let isLast = $last) {
           <p-tab
@@ -22,152 +22,204 @@
     </p-tabs>
   </div>
 
-  <div class="col-span-3 px-5">
+  <div class="col-span-3 pl-[15px]">
     <div class="portlet-body py-7">
       <div class="flex flex-row">
         <div class="flex-5">
           <label>{{ "CommonInfo.ERPNumber" | translate }}</label>
         </div>
-        <div class="flex-7">101456</div>
+        <div class="flex-7">{{ companyInfo.erpNumber }}</div>
       </div>
       <div class="flex flex-row">
         <div class="flex-5">
           <label>{{ "CommonInfo.OrgNumber" | translate }}</label>
         </div>
-        <div class="flex-7">811141402</div>
+        <div class="flex-7">{{ companyInfo.orgNumber }}</div>
       </div>
       <div class="flex flex-row">
         <div class="flex-5">
           <label>{{ "CommonInfo.Name" | translate }}</label>
         </div>
-        <div class="flex-7">
-          {{ companyInfo.name }} <i class="pl-10 pi pi-briefcase"></i>
+        <div class="flex-7 flex">
+          <b class="flex-8">{{ companyInfo.name }}</b>
+          <div class="flex-4">
+            <i class="pi pi-briefcase"></i>
+          </div>
         </div>
       </div>
       <div class="flex flex-row">
         <div class="flex-5">
           <label>{{ "CommonInfo.ImportantInfo" | translate }}</label>
         </div>
-        <div class="flex-7"><i class="pi pi-comment"></i></div>
+        <div class="flex-7" (click)="visibleImportantInfoDialog = true">
+          <i class="pi pi-comment"></i>
+        </div>
       </div>
       <div class="flex flex-row">
         <div class="flex-5 bold">
           <label>{{ "CommonInfo.CompanyClass" | translate }}</label>
         </div>
         <div class="flex-7 flex">
-          <b class="flex-8">Daughter company</b>
-          <div class="flex-4">
-          </div>
+          <b class="flex-8 flex">
+            {{ companyInfo.companyClassName }}</b
+          >
+          <p class="flex-4 flex">
+            <img
+              class="img-company-class"
+              src="{{ getCompanyClassImageSrc() }}"
+              (click)="visibleNetPromoterScoreDialog = true"
+            />
+            @if (companyInfo.companyNetPromoterScore > 0) {
+              <span class="promote-net-score">{{
+                companyInfo.companyNetPromoterScore
+              }}</span>
+            }
+          </p>
         </div>
       </div>
       <div class="flex flex-row">
         <div class="flex-5">
           <label>{{ "CommonInfo.PrimaryContact" | translate }}</label>
         </div>
-        <div class="flex-7"><a>Phong Man</a></div>
+        <div class="flex-7">
+          <a>{{ companyInfo.companyPrimaryContactName }}</a>
+        </div>
       </div>
       <div class="flex flex-row pt-5">
         <div class="flex-5">
           <label>{{ "CommonInfo.Primary" | translate }}</label>
         </div>
-        <div class="flex-7">Thao Tran</div>
+        <div class="flex-7">{{ companyInfo.primaryResponsibleName }}</div>
       </div>
       <div class="flex flex-row">
         <div class="flex-5">
           <label>{{ "CommonInfo.Second" | translate }}</label>
         </div>
-        <div class="flex-7"></div>
+        <div class="flex-7">{{ companyInfo.secondaryResponsibleName }}</div>
       </div>
       <div class="flex flex-row">
         <div class="flex-5">
           <label>{{ "CommonInfo.Sales" | translate }}</label>
         </div>
-        <div class="flex-7"></div>
+        <div class="flex-7">{{ companyInfo.salesResponsibleName }}</div>
       </div>
       <div class="flex flex-row">
         <div class="flex-5">
           <label>{{ "CommonInfo.Department" | translate }}</label>
         </div>
-        <div class="flex-7">Trondheim</div>
+        <div class="flex-7">{{ companyInfo.departmentName }}</div>
       </div>
       <div class="flex flex-row">
         <div class="flex-5">
           <label>{{ "CommonInfo.VisitStreet" | translate }}</label>
         </div>
-        <div class="flex-7">35 Pasteur</div>
+        <div class="flex-7">{{ companyInfo.visitAddress }}</div>
       </div>
       <div class="flex flex-row">
         <div class="flex-5">
           <label>{{ "CommonInfo.VisitCity" | translate }}</label>
         </div>
-        <div class="flex-7">0659</div>
+        <div class="flex-7">{{ companyInfo.visitCity }}</div>
       </div>
       <div class="flex flex-row">
         <div class="flex-5">
           <label>{{ "CommonInfo.Phone" | translate }}</label>
         </div>
-        <div class="flex-7">101456</div>
+        <div class="flex-7">{{ companyInfo.phone }}</div>
       </div>
       <div class="flex flex-row">
         <div class="flex-5">
           <label>{{ "CommonInfo.Web" | translate }}</label>
         </div>
-        <div class="flex-7"></div>
+        <div class="flex-7">{{ companyInfo.web }}</div>
       </div>
       <div class="flex flex-row">
         <div class="flex-5">
           <label>{{ "CommonInfo.Email" | translate }}</label>
         </div>
-        <div class="flex-7"><a>support&#64;abc.com</a></div>
+        <div class="flex-7">
+          <a href="mailto:{{ companyInfo.email }}">{{ companyInfo.email }}</a>
+        </div>
       </div>
       <div class="flex flex-row">
         <div class="flex-5">
           <label>{{ "CommonInfo.Invoices" | translate }}</label>
         </div>
-        <div class="flex-7">PDF By Email phuong&#64;abc.com</div>
+        <div class="flex-7">
+          {{ companyInfo.invoiceDelivery }}
+          @for (email of companyInfo.emailInvoices; track email) {
+            <br />
+            {{ email }}
+          }
+        </div>
       </div>
       <div class="flex flex-row pt-5">
         <div class="flex-5">
           <label>{{ "CommonInfo.AccountingYear" | translate }}</label>
         </div>
-        <div class="flex-7"></div>
+        <div class="flex-7 text-right">{{ companyInfo.accountingYear }}</div>
       </div>
       <div class="flex flex-row">
         <div class="flex-5">
           <label>{{ "CommonInfo.NumOfEmployees" | translate }}</label>
         </div>
-        <div class="flex-7"></div>
+        <div class="flex-7 text-right">{{ companyInfo.numOfEmployees }}</div>
       </div>
       <div class="flex flex-row">
         <div class="flex-5">
           <label>{{ "CommonInfo.Revenue" | translate }}</label>
         </div>
-        <div class="flex-7 text-right">0</div>
+        <div class="flex-7 text-right">{{ companyInfo.revenue }}</div>
       </div>
       <div class="flex flex-row">
         <div class="flex-5">
           <label>{{ "CommonInfo.Profit" | translate }}</label>
         </div>
-        <div class="flex-7 text-right">0</div>
+        <div class="flex-7 text-right">{{ companyInfo.profit }}</div>
       </div>
       <div class="flex flex-row pt-5">
         <div class="flex-5">
           <label>{{ "CommonInfo.IndustryCode" | translate }}</label>
         </div>
-        <div class="flex-7"></div>
+        <div class="flex-7">{{ companyInfo.industryCode }}</div>
       </div>
       <div class="flex flex-row">
         <div class="flex-5">
           <label>{{ "CommonInfo.IndustryName" | translate }}</label>
         </div>
-        <div class="flex-7"></div>
+        <div class="flex-7">{{ companyInfo.industryName }}</div>
       </div>
       <div class="flex flex-row pb-5">
         <div class="flex-5">
           <label>{{ "CommonInfo.TAM" | translate }}</label>
         </div>
-        <div class="flex-7"></div>
+        <div class="flex-7">{{ companyInfo.tAMName }}</div>
       </div>
     </div>
   </div>
 </div>
+
+<app-net-promoter-score
+  [(visible)]="visibleNetPromoterScoreDialog"
+></app-net-promoter-score>
+
+<p-dialog
+  header="Important Information"
+  [position]="'top'"
+  [closable]="false"
+  [modal]="true"
+  [(visible)]="visibleImportantInfoDialog"
+  [style]="{ width: '75rem' }"
+>
+  <div
+    class="mb-8"
+    [innerHtml]="bypassSecurityTrustHtml(companyInfo.comment)"
+  ></div>
+  <div class="flex justify-end gap-2">
+    <p-button
+      label="Close"
+      severity="secondary"
+      (click)="visibleImportantInfoDialog = false"
+    />
+  </div>
+</p-dialog>
