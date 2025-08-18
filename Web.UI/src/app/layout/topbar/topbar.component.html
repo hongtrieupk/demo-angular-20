@@ -67,7 +67,14 @@
     >
       <i class="pi pi-ellipsis-v"></i>
     </button>
-
+    <p-splitbutton
+      class="mr-[10px]"
+      severity="info"
+      [label]="'Common.SelectLanguage' | translate"
+      [model]="languageItems"
+      #splitButton
+      (onClick)="onClickSelectLanguages($event, splitButton)"
+    />
     <div class="layout-topbar-menu hidden lg:block">
       <div class="layout-topbar-menu-content">
         <button type="button" class="layout-topbar-action">

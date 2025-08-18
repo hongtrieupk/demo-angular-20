@@ -11,7 +11,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
     imports: [PanelModule],
 })
 export class CompanyCardImportantInfoComponent {
-    getCompanyInfo = inject(ROUTER_OUTLET_DATA) as Signal<CompanyInfo>;
+    private getCompanyInfo = inject(ROUTER_OUTLET_DATA) as Signal<CompanyInfo>;
     trustedHtmlInfoContent: SafeHtml;
     constructor(private sanitizer: DomSanitizer) {
         this.trustedHtmlInfoContent = this.sanitizer.bypassSecurityTrustHtml(

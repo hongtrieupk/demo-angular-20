@@ -4,6 +4,8 @@ import { map, Observable, of } from 'rxjs';
 import { CompanyInfo } from './company-info.model';
 import { ContactCardView } from './contact-card-view.model';
 import { PaginationResult, PagingOptions } from '../pagination.model';
+import { ActivityCardView } from './activity-card-view.model';
+import { DealActivityTypesEnum } from '../../enums/deal-activity-types.enum';
 
 @Injectable({
   providedIn: 'root',
@@ -65,5 +67,126 @@ export class CompanyClient {
       totalPages: 1,
     };
     return of(mockResults);
+  }
+  getActivities(
+    companyId: string,
+    pagingOption: PagingOptions,
+  ): Observable<PaginationResult<ActivityCardView>> {
+    return of({
+      items: this.mockAllActivities(),
+      totalItemCount: 2,
+      totalPages: 1,
+    });
+    // const url = `companies/${companyId}/activities`;
+    // return this.httpClient.get<PaginationResult<ActivityCardView>>(url, {
+    //   params: {
+    //     ...pagingOption,
+    //   },
+    // });
+  }
+
+  getLatestActivities(
+    companyId: string,
+    pagingOption: PagingOptions,
+  ): Observable<PaginationResult<ActivityCardView>> {
+    return of({
+      items: this.mockTop10Activities(),
+      totalItemCount: 2,
+      totalPages: 1,
+    });
+    // const url = `companies/${companyId}/activities/latest`;
+    // return this.httpClient.get<PaginationResult<ActivityCardView>>(url, {
+    //   params: {
+    //     ...pagingOption,
+    //   },
+    // });
+  }
+  mockAllActivities(): ActivityCardView[] {
+    return [
+      {
+        activityId: '',
+        date: '2024-01-26T15:39:00Z',
+        activityTypeId: DealActivityTypesEnum.Call,
+        activityType: 'Call',
+        title: 'SSE test',
+        customerPersonName: 'Phong Man',
+        assignedName: 'Phuong Nguyen',
+        status: 'Open',
+      },
+      {
+        activityId: '',
+        date: '2023-08-02T13:23:53.02Z',
+        activityTypeId: DealActivityTypesEnum.Email,
+        activityType: 'Call',
+        title: 'SSE test',
+        customerPersonName: 'Pakkun Pakkun',
+        assignedName: 'Jiraja Shanin',
+        status: 'Done',
+      },
+      {
+        activityId: '',
+        date: '2023-08-02T13:23:53.02Z',
+        activityTypeId: DealActivityTypesEnum.Upload,
+        activityType: 'Upload',
+        title: 'SSE test',
+        customerPersonName: 'Pakkun Pakkun',
+        assignedName: 'Jiraja Shanin',
+        status: 'Done',
+      },
+      {
+        activityId: '',
+        date: '2023-08-02T13:23:53.02Z',
+        activityTypeId: DealActivityTypesEnum.Email,
+        activityType: 'Call',
+        title: 'SSE test',
+        customerPersonName: 'Pakkun Pakkun',
+        assignedName: 'Jiraja Shanin',
+        status: 'Done',
+      },
+      {
+        activityId: '',
+        date: '2023-08-02T13:23:53.02Z',
+        activityTypeId: DealActivityTypesEnum.Email,
+        activityType: 'Call',
+        title: 'SSE test',
+        customerPersonName: 'Pakkun Pakkun',
+        assignedName: 'Jiraja Shanin',
+        status: 'Done',
+      },
+    ] as ActivityCardView[];
+  }
+  mockTop10Activities(): ActivityCardView[] {
+    return [
+      {
+        activityId: '',
+        date: '2024-01-26T15:39:00Z',
+        activityTypeId: DealActivityTypesEnum.Call,
+        activityType: 'Call',
+        title: 'Top 10 test 1',
+        customerPersonName: 'Phong Man',
+        assignedName: 'Phuong Nguyen',
+        status: 'Open',
+      },
+      {
+        activityId: '',
+        date: '2023-08-02T13:23:53.02Z',
+        activityTypeId: DealActivityTypesEnum.Email,
+        activityType: 'Call',
+        title: 'Top 10 test 2',
+        customerPersonName: 'Pakkun Pakkun',
+        assignedName: 'Jiraja Shanin',
+        status: 'Done',
+      },
+      {
+        activityId: '',
+        date: '2023-08-02T13:23:53.02Z',
+        activityTypeId: DealActivityTypesEnum.Upload,
+        activityType: 'Upload',
+        title: 'Top 10 test 1 3',
+        customerPersonName: 'Pakkun Pakkun',
+        assignedName: 'Jiraja Shanin',
+        status: 'Done',
+      },
+    ] as ActivityCardView[];
   }
 }

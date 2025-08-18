@@ -14,11 +14,11 @@ import { Subscription } from 'rxjs';
   selector: '[upI18n]',
 })
 export class I18nDirective implements OnInit {
-  cdr = inject(ChangeDetectorRef);
+  private cdr = inject(ChangeDetectorRef);
   i18nKey = input.required<string>();
-  pSelect = inject(Select, { optional: true });
-  pMultiSelect = inject(MultiSelect, { optional: true });
-  translateService = inject(TranslateService);
+  private pSelect = inject(Select, { optional: true });
+  private pMultiSelect = inject(MultiSelect, { optional: true });
+  private translateService = inject(TranslateService);
   private readonly subscriptions: Subscription[] = [];
 
   private getComponent() {

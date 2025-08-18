@@ -44,7 +44,13 @@
     "TAM": "TAM"
   },
   "Company": {
+    "Type": "Type",
+    "AddActivity": "Add Activity ot",
+    "ActivitiesAndNotes": "Activities & Notes ot",
+    "TakeNotes": "Take notes ot",
     "Address": "Address",
+    "Status": "Status other",
+    "ResponsiblePerson": "Responsible Person ot",
     "Address2": "Address 2",
     "Addresses": "Addresses",
     "AddressLine1": "Address Line 1",

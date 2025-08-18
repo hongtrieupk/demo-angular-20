@@ -186,16 +186,15 @@ export class TableComponent<TRowData> {
 
   selectedColumns: Column<TRowData>[] = [];
 
-  injector = inject(Injector);
-  renderer = inject(Renderer2);
-  datePipe = inject(DatePipe);
-  datePipeDefaultOptions: DatePipeConfig & { dateTimeFormat?: string } = inject(
-    DATE_PIPE_DEFAULT_OPTIONS,
-  );
-  translateService = inject(TranslateService);
-  sanitizer = inject(DomSanitizer);
+  private injector = inject(Injector);
+  private renderer = inject(Renderer2);
+  private datePipe = inject(DatePipe);
+  private datePipeDefaultOptions: DatePipeConfig & { dateTimeFormat?: string } =
+    inject(DATE_PIPE_DEFAULT_OPTIONS);
+  private translateService = inject(TranslateService);
+  private cdr = inject(ChangeDetectorRef);
+  private sanitizer = inject(DomSanitizer);
   selectedRows = model<TRowData[]>();
-  cdr = inject(ChangeDetectorRef);
 
   constructor() {
     this.translateService.onLangChange.subscribe(() => {

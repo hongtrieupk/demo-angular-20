@@ -6,8 +6,8 @@ import { MessageService, ToastMessageOptions } from 'primeng/api';
     providedIn: 'root',
 })
 export class ToastService {
-    messageService = inject(MessageService);
-    translateService = inject(TranslateService);
+    private messageService = inject(MessageService);
+    private translateService = inject(TranslateService);
 
     saveSuccessfully() {
         this.messageService.add({

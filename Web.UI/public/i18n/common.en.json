@@ -2,6 +2,12 @@
   "Common": {
     "Yes": "Yes",
     "No": "No",
-    "AddNew": "Add new"
+    "AddNew": "Add new",
+    "ComminSoon": "Coming soon ...",
+    "Show": "Show",
+    "ShowAll": "Show All",
+    "All": "All",
+    "Last10": "Last 10",
+    "SelectLanguage": "Select Language"
   }
 }

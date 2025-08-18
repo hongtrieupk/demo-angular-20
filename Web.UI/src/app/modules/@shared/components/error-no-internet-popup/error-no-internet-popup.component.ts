@@ -26,7 +26,7 @@ import { DialogDirective } from '../../directives/dialog.directive';
 })
 export class ErrorNoInternetPopupComponent {
     errorNoInternetPopupService = inject(ErrorNoInternetPopupService);
-    cdr = inject(ChangeDetectorRef);
+    private cdr = inject(ChangeDetectorRef);
 
     constructor() {
         effect(() => {

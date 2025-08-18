@@ -2,6 +2,11 @@
   "Common": {
     "Yes": "Co",
     "No": "Khong",
-    "AddNew": "Tao moi"
+    "AddNew": "Tao moi",
+    "Show": "Show other",
+    "All": "All other",
+    "ShowAll": "Show All other",
+    "Last10": "Last 10 other",
+    "SelectLanguage": "Select Other"
   }
 }

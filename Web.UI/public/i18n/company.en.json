@@ -43,6 +43,10 @@
     "TAM": "TAM"
   },
   "Company": {
+    "AddActivity": "Add Activity",
+    "Type": "Type other",
+    "ActivitiesAndNotes": "Activities & Notes ot",
+    "TakeNotes": "Take notes",
     "Address": "Address",
     "Address2": "Address 2",
     "Addresses": "Addresses",
@@ -57,6 +61,8 @@
     "CustomerId": "Customer ID",
     "Customers": "Customers",
     "Date": "Date",
+    "Status": "Status",
+    "ResponsiblePerson": "Responsible Person",
     "Email": "Email",
     "ImportantInfo": "Important Info",
     "InfoEmail": "Info Mail",

@@ -1,12 +1,4 @@
-import {
-  Component,
-  effect,
-  inject,
-  Injector,
-  runInInjectionContext,
-  Signal,
-  ViewContainerRef,
-} from '@angular/core';
+import { Component, inject, Signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ROUTER_OUTLET_DATA } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
@@ -39,11 +31,9 @@ import { CompanyClient } from '../../../core/api-clients/company/company.client'
   ],
 })
 export class CompanyCardContactComponent {
-  vcr = inject(ViewContainerRef);
-  injector = inject(Injector);
-  loadingService = inject(LoadingService);
-  toastService = inject(ToastService);
-  getCompanyInfo = inject(ROUTER_OUTLET_DATA) as Signal<CompanyInfo>;
+  private loadingService = inject(LoadingService);
+  private toastService = inject(ToastService);
+  private getCompanyInfo = inject(ROUTER_OUTLET_DATA) as Signal<CompanyInfo>;
   isShowOldContacts = false;
   companyId = '';
   contacts: ContactCardView[] = [];

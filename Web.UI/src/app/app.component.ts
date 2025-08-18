@@ -21,8 +21,8 @@ import { ProcessingSpinnerComponent } from './modules/@shared/components/spinner
 })
 export class AppComponent {
   title = 'million-demo';
-  translationService = inject(TranslationService);
-  loadingService = inject(LoadingService);
+  private translationService = inject(TranslationService);
+  private loadingService = inject(LoadingService);
   ngOnInit(): void {
     this.loadingService.show(null, true);
     this.translationService.loadTranslations().subscribe(() => {

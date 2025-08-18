@@ -16,10 +16,10 @@ import { Dialog } from 'primeng/dialog';
     selector: '[upDialog]',
 })
 export class DialogDirective {
-    pDialog = inject(Dialog);
-    er: ElementRef<HTMLElement> = inject(ElementRef);
-    render = inject(Renderer2);
-    vcr = inject(ViewContainerRef);
+    private pDialog = inject(Dialog);
+    private er: ElementRef<HTMLElement> = inject(ElementRef);
+    private render = inject(Renderer2);
+    private vcr = inject(ViewContainerRef);
 
     dialogFooterRef = contentChild<ElementRef<HTMLElement>>('dialogFooter');
     dialogBodyRef = contentChild<ElementRef<HTMLElement>>('dialogBody');
