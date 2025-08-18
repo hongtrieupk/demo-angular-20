@@ -1,0 +1,26 @@
+{
+  "WorkOrder": {
+    "MainType": "Hoved Type",
+    "IsInCludeHandedAsInternal": "Inkl. håndtert som internt",
+    "NewByPersonCompany": "Ny av person/ firma",
+    "WorkOrderNumber": "Nr",
+    "TaskType": "Oppgavetype",
+    "Category": "Kategori",
+    "Frequency": "Frekvens",
+    "EstimatedHours": "Est. timer",
+    "DoneByServiceDesk": "Utført av Servicedesk",
+    "DoneBy": "Utført av",
+    "DaysSinceLastUpdate": "Dager siden siste oppdatering",
+    "ChangedBy": "Endret av",
+    "Changed": "Endret",
+    "SupplierInvoicePosted": "Leverandørfaktura bokført",
+    "ApprovedNotDelivery": "Godkjent, ikke levert",
+    "OrderNo": "Ordrenr.",
+    "TotalPurchasePrice": "Innkjøpspris",
+    "TotalSalesPrice": "Salgspris",
+    "TotalGM": "DB Totalt",
+    "CreatedDate": "Opprettet dato",
+    "IsInternal": "Internkost/PO",
+    "SOOnly": "Kun SO"
+  }
+}

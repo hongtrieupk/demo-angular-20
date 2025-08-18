@@ -8,6 +8,21 @@
     "ShowAll": "Show All",
     "All": "All",
     "Last10": "Last 10",
-    "SelectLanguage": "Select Language"
+    "SelectLanguage": "Select Language",
+    "ExportToExcel": "Export to excel",
+    "FromDate": "From date",
+    "ToDate": "To date",
+    "Search": "Search",
+    "Freetext": "Freetext",
+    "Status": "Status",
+    "Age": "Age,",
+    "Customer": "Customer",
+    "RegisteredDate": "Registered date",
+    "DueDate": "Due Date",
+    "DueTime": "Due Time",
+    "Priority": "Priority",
+    "ContactPerson": "Contact Person",
+    "Title": "Title",
+    "NoService": "No services"
   }
 }

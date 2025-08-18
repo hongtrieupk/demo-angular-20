@@ -1,0 +1,26 @@
+{
+  "WorkOrder": {
+    "MainType": "Main Type",
+    "IsInCludeHandedAsInternal": "Incl. handled as internal",
+    "NewByPersonCompany": "New by person/company",
+    "WorkOrderNumber": "Work order no",
+    "TaskType": "Task type",
+    "Category": "Category",
+    "Frequency": "Frequency",
+    "EstimatedHours": "Est.hours",
+    "DoneByServiceDesk": "Done By Service Desk",
+    "DoneBy": "Done By",
+    "DaysSinceLastUpdate": "Days since last update",
+    "ChangedBy": "Changed by",
+    "Changed": "Changed",
+    "SupplierInvoicePosted": "Supplier invoice posted",
+    "ApprovedNotDelivery": "Approved not delivery",
+    "OrderNo": "Order No.",
+    "TotalPurchasePrice": "Total purchase price",
+    "TotalSalesPrice": "Total sales price",
+    "TotalGM": "Total GM",
+    "CreatedDate": "Created Date",
+    "IsInternal": "Internal cost/PO",
+    "SOOnly": "SO only"
+  }
+}

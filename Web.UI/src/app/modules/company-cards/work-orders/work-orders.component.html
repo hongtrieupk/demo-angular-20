@@ -1,0 +1,99 @@
+<div class="flex flex-row">
+  <div class="flex-2 uppercase">{{ "Common.Freetext" | translate }}</div>
+  <div class="flex-2 uppercase">{{ "Common.Status" | translate }}</div>
+  <div class="flex-2 uppercase">{{ "WorkOrder.MainType" | translate }}</div>
+  <div class="flex-2 uppercase">{{ "Common.FromDate" | translate }}</div>
+  <div class="flex-2 uppercase">{{ "Common.ToDate" | translate }}</div>
+  <div class="flex-2 uppercase">
+    <label for="includeHandledAsInternal">{{
+      "WorkOrder.IsInCludeHandedAsInternal" | translate
+    }}</label>
+  </div>
+</div>
+<div class="flex flex-row mt-[10px]">
+  <div class="flex-2">
+    <input [(ngModel)]="freetext" type="text" pInputText class="md:w-45" />
+  </div>
+  <div class="flex-2">
+    <p-multiselect
+      [options]="statusOptions"
+      [(ngModel)]="selectedStatuses"
+      optionLabel="label"
+      [placeholder]="'Common.NoneSelected' | translate"
+      class="md:w-45"
+    />
+  </div>
+  <div class="flex-2">
+    <p-select
+      [options]="mainTypeOptions"
+      [(ngModel)]="selectedMainType"
+      optionLabel="label"
+      class="md:w-45"
+    />
+  </div>
+  <div class="flex-2">
+    <p-datepicker
+      [(ngModel)]="fromDate"
+      [showIcon]="true"
+      inputId="buttondisplay"
+      class="flex md:w-45"
+    />
+  </div>
+  <div class="flex-2">
+    <p-datepicker
+      [(ngModel)]="toDate"
+      [showIcon]="true"
+      inputId="buttondisplay"
+      class="flex md:w-45"
+    />
+  </div>
+  <div class="flex-2 pt-[10px]">
+    <p-checkbox
+      [binary]="true"
+      [(ngModel)]="includeHandledAsInternal"
+      inputId="includeHandledAsInternal"
+    />
+  </div>
+</div>
+<div class="flex mt-[30px]">
+  <p-button
+    icon="pi pi-search"
+    class="mr-[10px]"
+    [label]="'Common.Search' | translate"
+    severity="info"
+    (click)="onClickSearch()"
+  />
+  <p-button
+    icon="pi pi-plus"
+    [label]="'WorkOrder.NewByPersonCompany' | translate"
+    severity="info"
+    class="mr-[10px]"
+  />
+  <p-button
+    icon="pi pi-plus"
+    [label]="'Common.AddNew' | translate"
+    severity="info"
+    class="mr-[10px]"
+  />
+  <p-button
+    icon="pi pi-print"
+    [label]="'Common.ExportToExcel' | translate"
+    severity="success"
+    class="flex flex-col justify-end"
+  />
+</div>
+<div class="pt-[10px]">
+  <up-table
+    [columns]="workOrderColumns"
+    [data]="workOrders"
+    [rows]="20"
+    [lazy]="true"
+    [totalRecords]="totalRecords"
+    [showRightButton]="true"
+    (onClickedRightButton)="navigateToEditWorkOrderPage($event)"
+    (onPageChange)="pageChange($event)"
+    (onSort)="pageSort($event)"
+    name="company-cards-table-work-order"
+  >
+  </up-table>
+</div>

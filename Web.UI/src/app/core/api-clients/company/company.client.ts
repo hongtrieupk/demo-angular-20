@@ -6,6 +6,7 @@ import { ContactCardView } from './contact-card-view.model';
 import { PaginationResult, PagingOptions } from '../pagination.model';
 import { ActivityCardView } from './activity-card-view.model';
 import { DealActivityTypesEnum } from '../../enums/deal-activity-types.enum';
+import { WorkOrderCardView } from './work-order-card-view.model';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +23,55 @@ export class CompanyClient {
     } as CompanyInfo;
     return of(mockCompanyInfos);
   }
-
+  searchWorkOrders(
+    companyId: string,
+    freetext: string,
+    statuses: string,
+    mainType: string | number,
+    fromDate: string,
+    toDate: string,
+    pagingOption: PagingOptions,
+  ): Observable<PaginationResult<WorkOrderCardView>> {
+    //  const url = `companies/${companyId}/work-orders`;
+    //         return this.httpClient.get<PaginationResult<WorkOrderCardView>>(url, {
+    //             params: {
+    //                 freetext,
+    //                 statuses,
+    //                 mainType,
+    //                 fromDate,
+    //                 toDate,
+    //                 ...pagingOption,
+    //             },
+    //         });
+    return of({
+      items: [
+        {
+          workOrderId: '90f46726-0b0c-4cee-a486-b6e26c66bde7',
+          workOrderNumber: '001231',
+          title:
+            'Undeliverable: Work ordre tildelt hos: Nguyen Company_NOK currency ',
+          createdDate: '07/31/2023',
+          dateString: '08/05/2023',
+          dueTimeDisplay: '00:12',
+          startDate: '08/09/2023',
+          taskTypeName: 'Change request',
+          mainTypeName: 'Customer Request',
+          priority: 'C',
+          category: 'Gruppe Servicedesk',
+          recurrenceTypeName: 'Daily',
+          estimatedHours: 8.0,
+          isDoneByServiceDesk: true,
+          fixedStatusString: 'Not Started	',
+          personName: 'Phuong Nguyen',
+          customerName: 'Loki Loki	',
+          age: '705',
+          daysSinceLastUpdate: '558',
+          lastUpdatedByName: 'khaoco tester	',
+          lastUpdatedDate: '06/04/2025',
+        },
+      ],
+    } as PaginationResult<WorkOrderCardView>);
+  }
   getContacts(
     companyId: string,
     inactiveOnly: boolean,
