@@ -1,0 +1,23 @@
+{
+  "Deal": {
+    "DealNo": "No",
+    "Title": "Title",
+    "Responsible": " Responsible",
+    "State": "State",
+    "LeadFrom": "Lead From",
+    "Sum": "Sum",
+    "Status": "Status",
+    "Date": "Date",
+    "IncludeDeleted": "Include Deleted",
+    "Renegotiation": "Renegotiation",
+    "AddActivity": "Add Activity",
+    "Name": "Name",
+    "InUse": "In use",
+    "CommentWhyNot": "Comment / Why not?",
+    "ActiveDeal": "Active deal",
+    "DealResponsible": "Deal responsible",
+    "ExpectedCloseDate": "Expected close date",
+    "MinimumAgreePeriod": "Minimum agree period",
+    "Category": " Category"
+  }
+}

@@ -1,1 +1,82 @@
-<p>CompanyCardSalesComponent works!</p>
+<p-panel [header]="'Company.Deals' | translate" [toggleable]="true">
+  <div class="grid grid-cols-2">
+    <div>
+      <p-button
+        icon="pi pi-plus"
+        [label]="'Deal.AddActivity' | translate"
+        severity="info"
+      />
+    </div>
+    <div class="flex justify-end">
+      <p-checkbox
+        [binary]="true"
+        [(ngModel)]="includeDeleted"
+        inputId="includeDeleted"
+        class="mt-[7px]"
+        (onChange)="onCheckedIncludeDeleted($event)"
+      />
+      <label for="includeDeleted" class="ml-[5px] mr-[5px] pt-[8px]">{{
+        "Deal.IncludeDeleted" | translate
+      }}</label>
+      <span class="mr-[5px] pt-[8px]">{{ "Common.ShowAll" | translate }}</span>
+      <p-toggleswitch [(ngModel)]="isShowAll" (onChange)="onToggleShowAll()">
+        <ng-template #handle let-checked="checked">
+          <span>{{
+            checked ? ("Common.All" | translate) : ("Deal.Last10" | translate)
+          }}</span>
+        </ng-template>
+      </p-toggleswitch>
+    </div>
+  </div>
+  <div class="pt-[10px]">
+    <up-table
+      [columns]="dealColumns"
+      [data]="deals"
+      [rows]="20"
+      [lazy]="true"
+      [totalRecords]="totalRecords"
+      [showRightButton]="true"
+      (onClickedRightButton)="navigateToDealActivityDetailsPage($event)"
+      (onPageChange)="pageChange($event)"
+      (onSort)="pageSort($event)"
+      name="company-cards-table-deal"
+    >
+    </up-table>
+  </div>
+</p-panel>
+<p-panel
+  [header]="'Company.Upselling' | translate"
+  [toggleable]="true"
+  styleClass="mt-[10px]"
+>
+  <div>
+    <up-table
+      [columns]="upSellingTableCols"
+      [data]="upSellings"
+      [rows]="4000"
+      name="company-cards-table-upselling"
+    >
+      <ng-template let-upSelling #actionButtons>
+        @if (shouldShowEditUpsellingBtn(upSelling)) {
+          <i
+            class="pi pi-file-edit text-blue-600 cursor-pointer"
+            (click)="editUpselling(upSelling)"
+          ></i>
+        }
+        @if (upSelling.inUse || upSelling.activeDeal) {
+          <a
+            class="pi pi-arrow-right"
+            [href]="getAggrementDetailsUrl(upSelling)"
+          ></a>
+        }
+        @if (upSelling.relevant) {
+          <a
+            href="javascript:void(0)"
+            (click)="showDealServiceDialog(upSelling)"
+            >{{ "DialogCaption.CreateDeal" | translate }}</a
+          >
+        }
+      </ng-template>
+    </up-table>
+  </div>
+</p-panel>

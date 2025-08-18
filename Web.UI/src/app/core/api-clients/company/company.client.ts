@@ -7,6 +7,8 @@ import { PaginationResult, PagingOptions } from '../pagination.model';
 import { ActivityCardView } from './activity-card-view.model';
 import { DealActivityTypesEnum } from '../../enums/deal-activity-types.enum';
 import { WorkOrderCardView } from './work-order-card-view.model';
+import { UpSellingCardView } from './upselling-card-view.model';
+import { DealCardView } from './deal-card-view.model';
 
 @Injectable({
   providedIn: 'root',
@@ -150,6 +152,60 @@ export class CompanyClient {
     //   },
     // });
   }
+  getUpsellings(
+    companyId: string,
+    pagingOption: PagingOptions,
+  ): Observable<PaginationResult<UpSellingCardView>> {
+    // const url = `companies/${companyId}/upsellings`;
+    // return this.httpClient.get<PaginationResult<UpSellingCardView>>(url, {
+    //     params: {
+    //         ...pagingOption,
+    //     },
+    // });
+    return of({
+      items: this.mockUpSellings(),
+      totalItemCount: 2,
+      totalPages: 1,
+    });
+  }
+
+  getInactiveDeals(
+    companyId: string,
+    includeDeleted: boolean,
+    pagingOption: PagingOptions,
+  ): Observable<PaginationResult<DealCardView>> {
+    // const url = `companies/${companyId}/inactive-deals`;
+    // return this.httpClient.get<PaginationResult<DealCardView>>(url, {
+    //     params: {
+    //         includeDeleted,
+    //         ...pagingOption,
+    //     },
+    // });
+    return of({
+      items: this.mockAllDeals(),
+      totalItemCount: 2,
+      totalPages: 1,
+    });
+  }
+
+  getLatestDeals(
+    companyId: string,
+    includeDeleted: boolean,
+    pagingOption: PagingOptions,
+  ): Observable<PaginationResult<DealCardView>> {
+    // const url = `companies/${companyId}/deals/latest`;
+    // return this.httpClient.get<PaginationResult<DealCardView>>(url, {
+    //   params: {
+    //     includeDeleted,
+    //     ...pagingOption,
+    //   },
+    // });
+    return of({
+      items: this.mockAllDeals(),
+      totalItemCount: 2,
+      totalPages: 1,
+    });
+  }
   mockAllActivities(): ActivityCardView[] {
     return [
       {
@@ -237,5 +293,349 @@ export class CompanyClient {
         status: 'Done',
       },
     ] as ActivityCardView[];
+  }
+
+  mockAllDeals(): DealCardView[] {
+    return [
+      {
+        dealId: '7caf8ce7-ded6-4898-8fa7-53513c9bdbd3',
+        dealNumber: 322,
+        title: 'ABC Custard Deal',
+        responsiblePersonName: 'Admin, System',
+        categoryName: 'Mersalg',
+        stageName: 'Forhandling',
+        leadFromName: 'Anbefalt',
+        totalPrice: 40005.21,
+        status: 'Won',
+        wonDate: '2023-11-23T08:10:16.997Z',
+        isRenegotiation: false,
+      },
+      {
+        dealId: '7caf8ce7-ded6-4898-8fa7-53513c9bdbd3',
+        dealNumber: 322,
+        title: 'TT test deal with auto create d SO/project - 01',
+        responsiblePersonName: 'Admin, System',
+        categoryName: 'Mersalg',
+        stageName: 'Forhandling',
+        leadFromName: 'Anbefalt',
+        totalPrice: 40005.21,
+        status: 'Won',
+        wonDate: '2023-11-23T08:10:16.997Z',
+        isRenegotiation: false,
+      },
+      {
+        dealId: '7caf8ce7-ded6-4898-8fa7-53513c9bdbd3',
+        dealNumber: 322,
+        title: 'Việt Nam chân gà hội',
+        responsiblePersonName: 'Admin, System',
+        categoryName: 'Mersalg',
+        stageName: 'Forhandling',
+        leadFromName: 'Anbefalt',
+        totalPrice: 40005.21,
+        status: 'Won',
+        wonDate: '2023-11-23T08:10:16.997Z',
+        isRenegotiation: false,
+      },
+      {
+        dealId: '7caf8ce7-ded6-4898-8fa7-53513c9bdbd3',
+        dealNumber: 322,
+        title:
+          'PN responsible 100% - Renegotiation 3,600 -> 3,000 - shared by PN 40% and 2 other persons',
+        responsiblePersonName: 'Admin, System',
+        categoryName: 'Mersalg',
+        stageName: 'Forhandling',
+        leadFromName: 'Anbefalt',
+        totalPrice: 40005.21,
+        status: 'Won',
+        wonDate: '2023-11-23T08:10:16.997Z',
+        isRenegotiation: false,
+      },
+    ];
+  }
+  mockTop10Deals(): DealCardView[] {
+    return [
+      {
+        dealId: '7caf8ce7-ded6-4898-8fa7-53513c9bdbd3',
+        dealNumber: 322,
+        title: 'ABC Custard Deal',
+        responsiblePersonName: 'Top 10',
+        categoryName: 'Mersalg',
+        stageName: 'Forhandling',
+        leadFromName: 'Anbefalt',
+        totalPrice: 40005.21,
+        status: 'Won',
+        wonDate: '2023-11-23T08:10:16.997Z',
+        isRenegotiation: false,
+      },
+      {
+        dealId: '7caf8ce7-ded6-4898-8fa7-53513c9bdbd3',
+        dealNumber: 322,
+        title: 'TT test deal with auto create d SO/project - 01',
+        responsiblePersonName: 'Top 10',
+        categoryName: 'Mersalg',
+        stageName: 'Forhandling',
+        leadFromName: 'Anbefalt',
+        totalPrice: 40005.21,
+        status: 'Won',
+        wonDate: '2023-11-23T08:10:16.997Z',
+        isRenegotiation: false,
+      },
+      {
+        dealId: '7caf8ce7-ded6-4898-8fa7-53513c9bdbd3',
+        dealNumber: 322,
+        title: 'Việt Nam chân gà hội',
+        responsiblePersonName: 'Top 10',
+        categoryName: 'Mersalg',
+        stageName: 'Forhandling',
+        leadFromName: 'Anbefalt',
+        totalPrice: 40005.21,
+        status: 'Won',
+        wonDate: '2023-11-23T08:10:16.997Z',
+        isRenegotiation: false,
+      },
+      {
+        dealId: '7caf8ce7-ded6-4898-8fa7-53513c9bdbd3',
+        dealNumber: 322,
+        title:
+          'PN responsible 100% - Renegotiation 3,600 -> 3,000 - shared by PN 40% and 2 other persons',
+        responsiblePersonName: 'Admin, System',
+        categoryName: 'Mersalg',
+        stageName: 'Forhandling',
+        leadFromName: 'Anbefalt',
+        totalPrice: 40005.21,
+        status: 'Won',
+        wonDate: '2023-11-23T08:10:16.997Z',
+        isRenegotiation: false,
+      },
+    ];
+  }
+
+  mockUpSellings(): UpSellingCardView[] {
+    return [
+      {
+        activeDeal: true,
+        articleNo: '',
+        agreementDetailId: '',
+        comment: 'yamaha why not?',
+        customerId: '',
+        dealExpectedCloseDate: '2024-01-26T09:39:29.393Z',
+        dealId: '',
+        dealResponsiblePersonName: 'Millie Brown Bobby',
+        inUse: false,
+        minimumAgreePeriodName: 'minimum Agree Period',
+        productGroupNumber: '4',
+        relevant: false,
+        serviceTypeName: 'Antivirus_Spam',
+        upsellingId: '',
+      },
+      {
+        activeDeal: true,
+        articleNo: '',
+        agreementDetailId: '',
+        comment: 'yamaha why not?',
+        customerId: '',
+        dealExpectedCloseDate: '2024-01-26T09:39:29.393Z',
+        dealId: '',
+        dealResponsiblePersonName: 'Millie Brown Bobby',
+        inUse: false,
+        minimumAgreePeriodName: 'minimum Agree Period',
+        productGroupNumber: '4',
+        relevant: false,
+        serviceTypeName: 'Antivirus_Spam',
+        upsellingId: '',
+      },
+      {
+        activeDeal: true,
+        articleNo: '',
+        agreementDetailId: '',
+        comment: 'yamaha why not?',
+        customerId: '',
+        dealExpectedCloseDate: '2024-01-26T09:39:29.393Z',
+        dealId: '',
+        dealResponsiblePersonName: 'Millie Brown Bobby',
+        inUse: false,
+        minimumAgreePeriodName: 'minimum Agree Period',
+        productGroupNumber: '4',
+        relevant: false,
+        serviceTypeName: 'Antivirus_Spam',
+        upsellingId: '',
+      },
+      {
+        activeDeal: true,
+        articleNo: '',
+        agreementDetailId: '',
+        comment: 'yamaha why not?',
+        customerId: '',
+        dealExpectedCloseDate: '2024-01-26T09:39:29.393Z',
+        dealId: '',
+        dealResponsiblePersonName: 'Millie Brown Bobby',
+        inUse: false,
+        minimumAgreePeriodName: 'minimum Agree Period',
+        productGroupNumber: '4',
+        relevant: false,
+        serviceTypeName: 'Antivirus_Spam',
+        upsellingId: '',
+      },
+      {
+        activeDeal: true,
+        articleNo: '',
+        agreementDetailId: '',
+        comment: 'yamaha why not?',
+        customerId: '',
+        dealExpectedCloseDate: '2024-01-26T09:39:29.393Z',
+        dealId: '',
+        dealResponsiblePersonName: 'Millie Brown Bobby',
+        inUse: false,
+        minimumAgreePeriodName: 'minimum Agree Period',
+        productGroupNumber: '4',
+        relevant: false,
+        serviceTypeName: 'Antivirus_Spam',
+        upsellingId: '',
+      },
+      {
+        activeDeal: true,
+        articleNo: '',
+        agreementDetailId: '',
+        comment: 'yamaha why not?',
+        customerId: '',
+        dealExpectedCloseDate: '2024-01-26T09:39:29.393Z',
+        dealId: '',
+        dealResponsiblePersonName: 'Millie Brown Bobby',
+        inUse: false,
+        minimumAgreePeriodName: 'minimum Agree Period',
+        productGroupNumber: '4',
+        relevant: false,
+        serviceTypeName: 'Antivirus_Spam',
+        upsellingId: '',
+      },
+      {
+        activeDeal: true,
+        articleNo: '',
+        agreementDetailId: '',
+        comment: 'yamaha why not?',
+        customerId: '',
+        dealExpectedCloseDate: '2024-01-26T09:39:29.393Z',
+        dealId: '',
+        dealResponsiblePersonName: 'Millie Brown Bobby',
+        inUse: false,
+        minimumAgreePeriodName: 'minimum Agree Period',
+        productGroupNumber: '4',
+        relevant: false,
+        serviceTypeName: 'Antivirus_Spam',
+        upsellingId: '',
+      },
+      {
+        activeDeal: true,
+        articleNo: '',
+        agreementDetailId: '',
+        comment: 'yamaha why not?',
+        customerId: '',
+        dealExpectedCloseDate: '2024-01-26T09:39:29.393Z',
+        dealId: '',
+        dealResponsiblePersonName: 'Millie Brown Bobby',
+        inUse: false,
+        minimumAgreePeriodName: 'minimum Agree Period',
+        productGroupNumber: '4',
+        relevant: false,
+        serviceTypeName: 'Antivirus_Spam',
+        upsellingId: '',
+      },
+      {
+        activeDeal: true,
+        articleNo: '',
+        agreementDetailId: '',
+        comment: 'yamaha why not?',
+        customerId: '',
+        dealExpectedCloseDate: '2024-01-26T09:39:29.393Z',
+        dealId: '',
+        dealResponsiblePersonName: 'Millie Brown Bobby',
+        inUse: false,
+        minimumAgreePeriodName: 'minimum Agree Period',
+        productGroupNumber: '4',
+        relevant: false,
+        serviceTypeName: 'Antivirus_Spam',
+        upsellingId: '',
+      },
+      {
+        activeDeal: true,
+        articleNo: '',
+        agreementDetailId: '',
+        comment: 'yamaha why not?',
+        customerId: '',
+        dealExpectedCloseDate: '2024-01-26T09:39:29.393Z',
+        dealId: '',
+        dealResponsiblePersonName: 'Millie Brown Bobby',
+        inUse: false,
+        minimumAgreePeriodName: 'minimum Agree Period',
+        productGroupNumber: '4',
+        relevant: false,
+        serviceTypeName: 'Antivirus_Spam',
+        upsellingId: '',
+      },
+      {
+        activeDeal: true,
+        articleNo: '',
+        agreementDetailId: '',
+        comment: 'yamaha why not?',
+        customerId: '',
+        dealExpectedCloseDate: '2024-01-26T09:39:29.393Z',
+        dealId: '',
+        dealResponsiblePersonName: 'Millie Brown Bobby',
+        inUse: false,
+        minimumAgreePeriodName: 'minimum Agree Period',
+        productGroupNumber: '4',
+        relevant: false,
+        serviceTypeName: 'Antivirus_Spam',
+        upsellingId: '',
+      },
+      {
+        activeDeal: true,
+        articleNo: '',
+        agreementDetailId: '',
+        comment: 'yamaha why not?',
+        customerId: '',
+        dealExpectedCloseDate: '2024-01-26T09:39:29.393Z',
+        dealId: '',
+        dealResponsiblePersonName: 'Millie Brown Bobby',
+        inUse: false,
+        minimumAgreePeriodName: 'minimum Agree Period',
+        productGroupNumber: '4',
+        relevant: false,
+        serviceTypeName: 'Antivirus_Spam',
+        upsellingId: '',
+      },
+      {
+        activeDeal: true,
+        articleNo: '',
+        agreementDetailId: '',
+        comment: 'yamaha why not?',
+        customerId: '',
+        dealExpectedCloseDate: '2024-01-26T09:39:29.393Z',
+        dealId: '',
+        dealResponsiblePersonName: 'Millie Brown Bobby',
+        inUse: false,
+        minimumAgreePeriodName: 'minimum Agree Period',
+        productGroupNumber: '4',
+        relevant: false,
+        serviceTypeName: 'Antivirus_Spam',
+        upsellingId: '',
+      },
+      {
+        activeDeal: true,
+        articleNo: '',
+        agreementDetailId: '',
+        comment: 'yamaha why not?',
+        customerId: '',
+        dealExpectedCloseDate: '2024-01-26T09:39:29.393Z',
+        dealId: '',
+        dealResponsiblePersonName: 'Millie Brown Bobby',
+        inUse: false,
+        minimumAgreePeriodName: 'minimum Agree Period',
+        productGroupNumber: '4',
+        relevant: false,
+        serviceTypeName: 'Antivirus_Spam',
+        upsellingId: '',
+      },
+    ];
   }
 }

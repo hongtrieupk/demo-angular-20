@@ -43,6 +43,8 @@
     "TAM": "TAM"
   },
   "Company": {
+    "Deals": "Deals",
+    "Upselling": "Upselling",
     "AddActivity": "Add Activity",
     "Type": "Type other",
     "ActivitiesAndNotes": "Activities & Notes ot",
