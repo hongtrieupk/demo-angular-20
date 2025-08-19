@@ -1,23 +1,21 @@
 import { Routes } from '@angular/router';
 import { LayoutComponent } from './layout/layout/layout.component';
-import { CompanyCardsResolver } from './modules/company-cards/company-cards.resolver';
+import { CompanyCardsResolver } from './modules/companies/company-cards/company-cards.resolver';
+import { Companies } from './modules/companies/companies';
 
 export const routes: Routes = [
-    {
-        path: '',
-        component: LayoutComponent,
-        children: [ {
-                path: 'companies',
-                component: LayoutComponent,
-            },
-            {
-                path: 'company-cards',
-                providers: [CompanyCardsResolver],
-                loadChildren: () =>
-                    import(
-                        './modules/company-cards/company-cards-routing'
-                    ).then((m) => m.COMPANY_CARDS_ROUTES),
-            },
-        ],
-    },
+  {
+    path: '', // , redirectTo: '/companies', pathMatch: 'full'
+    component: LayoutComponent,
+    children: [
+      {
+        path: 'companies',
+        loadChildren: () =>
+          import('./modules/companies/companies-routing').then(
+            (m) => m.COMPANY_ROUTES,
+          ),
+      },
+    ],
+  },
+  { path: '**', redirectTo: '/companies' },
 ];

@@ -1,5 +1,5 @@
-import { WorkOrderCardView } from "../../../core/api-clients/company/work-order-card-view.model";
-import { Column } from "../../@shared/components/table/column.model";
+import { WorkOrderCardView } from "../../../../core/api-clients/company/work-order-card-view.model";
+import { Column } from "../../../@shared/components/table/column.model";
 
 export const workOrderColumns: Column<WorkOrderCardView>[] = [
     {

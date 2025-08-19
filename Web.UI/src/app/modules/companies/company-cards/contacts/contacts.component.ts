@@ -6,15 +6,15 @@ import { PanelModule } from 'primeng/panel';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
 import { CheckboxModule } from 'primeng/checkbox';
 import { TranslatePipe } from '@ngx-translate/core';
-import { TableComponent } from '../../@shared/components/table/table.component';
-import { LoadingService } from '../../@shared/components/spinner/loading.service';
-import { CompanyInfo } from '../../../core/api-clients/company/company-info.model';
-import { ContactCardView } from '../../../core/api-clients/company/contact-card-view.model';
+import { TableComponent } from '../../../@shared/components/table/table.component';
+import { LoadingService } from '../../../@shared/components/spinner/loading.service';
+import { CompanyInfo } from '../../../../core/api-clients/company/company-info.model';
+import { ContactCardView } from '../../../../core/api-clients/company/contact-card-view.model';
 import { contactColumns } from './table-columns.constant';
-import { PagingOptions } from '../../../core/api-clients/pagination.model';
-import { mapPrimengSortEnumToSortDirectionEnum } from '../../../core/enums/table.enum';
-import { ToastService } from '../../@shared/components/toast/toast.service';
-import { CompanyClient } from '../../../core/api-clients/company/company.client';
+import { PagingOptions } from '../../../../core/api-clients/pagination.model';
+import { mapPrimengSortEnumToSortDirectionEnum } from '../../../../core/enums/table.enum';
+import { ToastService } from '../../../@shared/components/toast/toast.service';
+import { CompanyClient } from '../../../../core/api-clients/company/company.client';
 
 @Component({
   selector: 'app-company-card-contacts',

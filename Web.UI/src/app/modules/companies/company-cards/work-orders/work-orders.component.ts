@@ -10,15 +10,14 @@ import { InputTextModule } from 'primeng/inputtext';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { SelectModule } from 'primeng/select';
 import { workOrderColumns } from './table-columns.constant';
-import { TableComponent } from '../../@shared/components/table/table.component';
-import { WorkOrderStatusEnum } from '../../../core/enums/work-order-status.enum';
-import { CompanyClient } from '../../../core/api-clients/company/company.client';
-import { SelectOption } from '../../../core/api-clients/select-option';
-import { PagingOptions } from '../../../core/api-clients/pagination.model';
-import { WorkOrderCardView } from '../../../core/api-clients/company/work-order-card-view.model';
-import { CompanyInfo } from '../../../core/api-clients/company/company-info.model';
-import { values } from 'lodash';
-import { DATE_FORMAT, mapPrimengSortEnumToSortDirectionEnum } from '../../../core/enums/table.enum';
+import { TableComponent } from '../../../@shared/components/table/table.component';
+import { WorkOrderStatusEnum } from '../../../../core/enums/work-order-status.enum';
+import { CompanyClient } from '../../../../core/api-clients/company/company.client';
+import { SelectOption } from '../../../../core/api-clients/select-option';
+import { PagingOptions } from '../../../../core/api-clients/pagination.model';
+import { WorkOrderCardView } from '../../../../core/api-clients/company/work-order-card-view.model';
+import { CompanyInfo } from '../../../../core/api-clients/company/company-info.model';
+import { DATE_FORMAT, mapPrimengSortEnumToSortDirectionEnum } from '../../../../core/enums/table.enum';
 
 @Component({
   selector: 'app-company-card-work-orders',

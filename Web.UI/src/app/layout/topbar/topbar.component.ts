@@ -32,10 +32,7 @@ export class TopbarComponent {
     {
       label: 'Other language',
       command: () => this.select('other'),
-    },
-    { separator: true },
-    { label: 'Profile', url: '/profile' },
-    { label: 'Log Off', routerLink: ['/logout'] },
+    }
   ];
   constructor(public layoutService: LayoutService) {}
 

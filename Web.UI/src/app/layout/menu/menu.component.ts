@@ -28,7 +28,7 @@ export class MenuComponent {
                         label: 'ABC Custard',
                         icon: 'pi pi-fw pi-building',
                         routerLink: [
-                            '/company-cards/6489930d-9caa-420a-b096-f1602e771e45',
+                            '/companies/view/6489930d-9caa-420a-b096-f1602e771e45',
                         ],
                     },
                 ],

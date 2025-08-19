@@ -1,5 +1,5 @@
-import { ContactCardView } from "../../../core/api-clients/company/contact-card-view.model";
-import { Column } from "../../@shared/components/table/column.model";
+import { ContactCardView } from "../../../../core/api-clients/company/contact-card-view.model";
+import { Column } from "../../../@shared/components/table/column.model";
 
 
 export const contactColumns: Column<ContactCardView>[] = [

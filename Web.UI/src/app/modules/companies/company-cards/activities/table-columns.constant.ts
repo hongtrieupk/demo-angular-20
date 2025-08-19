@@ -1,6 +1,6 @@
-import { ActivityCardView } from '../../../core/api-clients/company/activity-card-view.model';
-import { DealActivityTypesEnum } from '../../../core/enums/deal-activity-types.enum';
-import { Column } from '../../@shared/components/table/column.model';
+import { ActivityCardView } from '../../../../core/api-clients/company/activity-card-view.model';
+import { DealActivityTypesEnum } from '../../../../core/enums/deal-activity-types.enum';
+import { Column } from '../../../@shared/components/table/column.model';
 
 const getActivityTypeIconClass = (
   activityTypeId: DealActivityTypesEnum,

@@ -6,14 +6,14 @@ import { ButtonModule } from 'primeng/button';
 import { PanelModule } from 'primeng/panel';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
 import { activitiesColumns } from './table-columns.constant';
-import { ToastService } from '../../@shared/components/toast/toast.service';
-import { TableComponent } from '../../@shared/components/table/table.component';
-import { isEmptyGuid } from '../../../core/ultis/string-utils';
-import { DealActivityTypesEnum } from '../../../core/enums/deal-activity-types.enum';
-import { PagingOptions } from '../../../core/api-clients/pagination.model';
-import { ActivityCardView } from '../../../core/api-clients/company/activity-card-view.model';
-import { CompanyInfo } from '../../../core/api-clients/company/company-info.model';
-import { CompanyClient } from '../../../core/api-clients/company/company.client';
+import { ToastService } from '../../../@shared/components/toast/toast.service';
+import { TableComponent } from '../../../@shared/components/table/table.component';
+import { isEmptyGuid } from '../../../../core/ultis/string-utils';
+import { DealActivityTypesEnum } from '../../../../core/enums/deal-activity-types.enum';
+import { PagingOptions } from '../../../../core/api-clients/pagination.model';
+import { ActivityCardView } from '../../../../core/api-clients/company/activity-card-view.model';
+import { CompanyInfo } from '../../../../core/api-clients/company/company-info.model';
+import { CompanyClient } from '../../../../core/api-clients/company/company.client';
 import { Subscription } from 'rxjs';
 
 @Component({

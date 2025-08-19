@@ -51,7 +51,7 @@ export const appConfig: ApplicationConfig = {
         const translateService = inject(TranslateService);
         const getDatePipeConfig = () => {
           const language = translateService.currentLang;
-          if (language === 'no') {
+          if (language === 'other') {
             return {
               dateFormat: 'dd.MM.yyyy',
               dateTimeFormat: 'dd.MM.yyyy HH:mm:ss',

@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot } from '@angular/router';
-import { CompanyInfo } from '../../core/api-clients/company/company-info.model';
-import { CompanyClient } from '../../core/api-clients/company/company.client';
+import { CompanyInfo } from '../../../core/api-clients/company/company-info.model';
+import { CompanyClient } from '../../../core/api-clients/company/company.client';
 import { Observable } from 'rxjs';
 
 @Injectable()

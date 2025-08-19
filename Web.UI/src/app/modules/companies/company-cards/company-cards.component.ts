@@ -9,7 +9,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ButtonModule } from 'primeng/button';
 import { getCompanyClassImageSrc, TABS } from './constant';
 import { NetPromoterScoreComponent } from './net-promoter-score/net-promoter-score.component';
-import { CompanyInfo } from '../../core/api-clients/company/company-info.model';
+import { CompanyInfo } from '../../../core/api-clients/company/company-info.model';
 
 @UntilDestroy()
 @Component({

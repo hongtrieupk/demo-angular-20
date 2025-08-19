@@ -8,15 +8,15 @@ import { ButtonModule } from 'primeng/button';
 import { PanelModule } from 'primeng/panel';
 import { TableModule } from 'primeng/table';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
-import { TableComponent } from '../../@shared/components/table/table.component';
-import { CompanyInfo } from '../../../core/api-clients/company/company-info.model';
-import { DealCardView } from '../../../core/api-clients/company/deal-card-view.model';
-import { UpSellingCardView } from '../../../core/api-clients/company/upselling-card-view.model';
+import { TableComponent } from '../../../@shared/components/table/table.component';
+import { CompanyInfo } from '../../../../core/api-clients/company/company-info.model';
+import { DealCardView } from '../../../../core/api-clients/company/deal-card-view.model';
+import { UpSellingCardView } from '../../../../core/api-clients/company/upselling-card-view.model';
 import { dealColumns, upSellingCols } from './table-columns.constant';
-import { PagingOptions } from '../../../core/api-clients/pagination.model';
-import { CompanyClient } from '../../../core/api-clients/company/company.client';
-import { mapPrimengSortEnumToSortDirectionEnum } from '../../../core/enums/table.enum';
-import { ToastService } from '../../@shared/components/toast/toast.service';
+import { PagingOptions } from '../../../../core/api-clients/pagination.model';
+import { CompanyClient } from '../../../../core/api-clients/company/company.client';
+import { mapPrimengSortEnumToSortDirectionEnum } from '../../../../core/enums/table.enum';
+import { ToastService } from '../../../@shared/components/toast/toast.service';
 
 @Component({
   selector: 'app-company-card-sales',
