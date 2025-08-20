@@ -2,13 +2,40 @@
   <a>{{ 'Company.Companies' | translate }}</a>
 </h4>
 <div class="gap-2 table-container">
+  <div class="flex flex-row">
+    <div class="flex-2 uppercase">
+      {{ "Company.SearchByCompanyName" | translate }}
+    </div>
+  </div>
+  <div class="flex flex-row mt-[10px]">
+    <div class="flex-2">
+      <input
+        [(ngModel)]="searchCompanyName"
+        type="text"
+        pInputText
+        class="md:w-45"
+      />
+    </div>
+  </div>
+  <div class="flex mt-[30px]">
+    <p-button
+      icon="pi pi-search"
+      class="mr-[10px]"
+      [label]="'Common.Search' | translate"
+      severity="info"
+      (click)="onClickSearch()"
+    />
+  </div>
   <div class="pt-[10px]">
     <app-table
       [columns]="columns"
       [data]="companies"
       name="company-list-table"
       [rows]="20"
-      [lazy]="false"
+      [lazy]="true"
+      [totalRecords]="totalRecords"
+      (onPageChange)="pageChange($event)"
+      (onSort)="pageSort($event)"
     >
     </app-table>
   </div>

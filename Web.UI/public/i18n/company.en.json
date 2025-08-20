@@ -43,6 +43,7 @@
     "TAM": "TAM"
   },
   "Company": {
+    "SearchByCompanyName": "Search by company name",
     "Deals": "Deals",
     "Upselling": "Upselling",
     "AddActivity": "Add Activity",

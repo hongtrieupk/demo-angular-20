@@ -1,4 +1,4 @@
-import { SortDirectionEnum } from "../enums/table.enum";
+import { PrimengSortEnum } from "../enums/table.enum";
 
 export interface PaginationResult<T> {
     pageNumber?: number;
@@ -10,6 +10,6 @@ export interface PaginationResult<T> {
 export interface PagingOptions {
     pageSize?: number;
     pageNumber?: number;
-    sortDirection?: SortDirectionEnum;
+    sortDirection?: PrimengSortEnum;
     sortField?: string;
 }

@@ -63,7 +63,7 @@ export class CompanyCardActivitiesComponent {
   }
   private showEditDealActivityNoteDialog(activity: ActivityCardView) {
     this.toastService.success(
-      this.translateService.instant('Common.ComingSoon'),
+      this.translateService.instant('Common.ComminSoon'),
     );
   }
 
@@ -94,19 +94,19 @@ export class CompanyCardActivitiesComponent {
   }
   showCreateDealActivityNoteDialog() {
     this.toastService.success(
-      this.translateService.instant('Common.ComingSoon'),
+      this.translateService.instant('Common.ComminSoon'),
     );
   }
 
   showCreateDealActivityDialog() {
     this.toastService.success(
-      this.translateService.instant('Common.ComingSoon'),
+      this.translateService.instant('Common.ComminSoon'),
     );
   }
 
   showEditDealActivityDialog(dealActivity: ActivityCardView) {
     this.toastService.success(
-      this.translateService.instant('Common.ComingSoon'),
+      this.translateService.instant('Common.ComminSoon'),
     );
   }
 }

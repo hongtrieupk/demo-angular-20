@@ -25,6 +25,7 @@
     "ContactPerson": "Contact Person",
     "Title": "Title",
     "NoService": "No services",
+    "NoneSelected": "No item selected",
     "NoDataDisplay": "No data to show",
     "ErrorTitleModal": "Error",
     "NetworkConnectionError": "Network connection error",

@@ -17,7 +17,7 @@ import { SelectOption } from '../../../../core/api-clients/select-option';
 import { PagingOptions } from '../../../../core/api-clients/pagination.model';
 import { WorkOrderCardView } from '../../../../core/api-clients/company/models/work-order-card-view.model';
 import { CompanyInfo } from '../../../../core/api-clients/company/models/company-info.model';
-import { DATE_FORMAT, mapPrimengSortEnumToSortDirectionEnum } from '../../../../core/enums/table.enum';
+import { DATE_FORMAT } from '../../../../core/enums/table.enum';
 
 @Component({
   selector: 'app-company-card-work-orders',
@@ -85,9 +85,7 @@ export class CompanyCardWorkOrdersComponent {
     this.getWorkOrders();
   }
   pageSort(event: any): void {
-    this.pagingOptions.sortDirection = mapPrimengSortEnumToSortDirectionEnum(
-      event.order,
-    );
+    this.pagingOptions.sortDirection = event.order;
     this.pagingOptions.sortField = event.field;
     this.getWorkOrders();
   }

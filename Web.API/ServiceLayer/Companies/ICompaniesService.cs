@@ -5,6 +5,6 @@ namespace ServiceLayer.Companies
 {
     public interface ICompaniesService
     {
-        Task<PaginationResult<CompanyOveralDTO>> SearchCompanies(CancellationToken cancellationToken);
+        Task<PaginationResult<CompanyOveralDTO>> GetCompanies(CompaniesSearchCriteria criteria, CancellationToken cancellationToken);
     }
 }

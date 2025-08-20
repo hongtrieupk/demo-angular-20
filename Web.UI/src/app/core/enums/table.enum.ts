@@ -7,20 +7,6 @@ export const enum PrimengSortEnum {
 }
 
 export type SortOptions = SortMeta & {
-  sortDirection?: SortDirectionEnum;
-};
-
-export const enum SortDirectionEnum {
-  Asc = 1,
-  Desc = 2, // BE Enum should be update to -1 then we can remove this enum definition.
-}
-export const mapPrimengSortEnumToSortDirectionEnum = (
-  order: PrimengSortEnum,
-) => {
-  return order === PrimengSortEnum.Asc
-    ? SortDirectionEnum.Asc
-    : order === PrimengSortEnum.Desc
-      ? SortDirectionEnum.Desc
-      : undefined;
+  sortDirection?: PrimengSortEnum;
 };
 export const DATE_FORMAT = 'MM/dd/yyyy';

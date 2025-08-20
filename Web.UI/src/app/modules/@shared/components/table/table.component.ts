@@ -48,10 +48,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DatePickerModule } from 'primeng/datepicker';
 import { SelectModule } from 'primeng/select';
-import {
-  mapPrimengSortEnumToSortDirectionEnum,
-  SortOptions,
-} from '../../../../core/enums/table.enum';
+import { SortOptions } from '../../../../core/enums/table.enum';
 
 @Component({
   selector: 'app-table',
@@ -96,7 +93,7 @@ export class TableComponent<TRowData> {
   totalRecords = input<number>();
   page = input<number>(0); // page start from 0
   first = computed(() => this.page() * this.rows());
-  defaultRowsPerPageOptions = [5, 10, 20, 50, 100, 200];
+  defaultRowsPerPageOptions = [1, 5, 10, 20, 50, 100, 200];
   defaultRowsPerPage = 10;
   rows = input<number>(this.defaultRowsPerPage);
   rowsPerPageOptions = input<number[]>(this.defaultRowsPerPageOptions);
@@ -329,7 +326,7 @@ export class TableComponent<TRowData> {
   handleSort(sort: SortMeta) {
     this.onSort.emit({
       ...sort,
-      sortDirection: mapPrimengSortEnumToSortDirectionEnum(sort.order),
+      sortDirection: sort.order,
     });
   }
 

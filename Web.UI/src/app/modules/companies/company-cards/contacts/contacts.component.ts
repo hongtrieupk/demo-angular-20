@@ -12,7 +12,6 @@ import { CompanyInfo } from '../../../../core/api-clients/company/models/company
 import { ContactCardView } from '../../../../core/api-clients/company/models/contact-card-view.model';
 import { contactColumns } from './table-columns.constant';
 import { PagingOptions } from '../../../../core/api-clients/pagination.model';
-import { mapPrimengSortEnumToSortDirectionEnum } from '../../../../core/enums/table.enum';
 import { ToastService } from '../../../@shared/components/toast/toast.service';
 import { CompanyClient } from '../../../../core/api-clients/company/company.client';
 
@@ -60,9 +59,7 @@ export class CompanyCardContactComponent {
     this.getContacts();
   }
   pageSort(event: any): void {
-    this.pagingOptions.sortDirection = mapPrimengSortEnumToSortDirectionEnum(
-      event.order,
-    );
+    this.pagingOptions.sortDirection = event.order;
     this.pagingOptions.sortField = event.field;
     this.getContacts();
   }

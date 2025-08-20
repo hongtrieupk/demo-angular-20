@@ -11,9 +11,9 @@ namespace Web.API.Controllers.v1
     {
         private readonly ICompaniesService _companyService = companyService;
         [HttpGet("")]
-        public async Task<PaginationResult<CompanyOveralDTO>> SearchCompany(CancellationToken cancellationToken)
+        public async Task<PaginationResult<CompanyOveralDTO>> GetCompanies([FromQuery] CompaniesSearchCriteria criteria, CancellationToken cancellationToken)
         {
-           return await _companyService.SearchCompanies(cancellationToken);
+           return await _companyService.GetCompanies(criteria, cancellationToken);
         }
     }
 }

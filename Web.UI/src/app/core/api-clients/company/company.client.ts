@@ -17,11 +17,13 @@ import { CompanyOveralInfo } from './models/company-overal-info.model';
 export class CompanyClient {
   private httpClient = inject(HttpClient);
   getCompanies(
+    companyName: string,
     pagingOption: PagingOptions,
   ): Observable<PaginationResult<CompanyOveralInfo>> {
     const url = `companies`;
     return this.httpClient.get<PaginationResult<CompanyOveralInfo>>(url, {
       params: {
+        name: companyName,
         ...pagingOption,
       },
     });

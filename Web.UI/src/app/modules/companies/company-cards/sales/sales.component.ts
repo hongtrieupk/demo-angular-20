@@ -15,7 +15,6 @@ import { UpSellingCardView } from '../../../../core/api-clients/company/models/u
 import { dealColumns, upSellingCols } from './table-columns.constant';
 import { PagingOptions } from '../../../../core/api-clients/pagination.model';
 import { CompanyClient } from '../../../../core/api-clients/company/company.client';
-import { mapPrimengSortEnumToSortDirectionEnum } from '../../../../core/enums/table.enum';
 import { ToastService } from '../../../@shared/components/toast/toast.service';
 import { Subscription } from 'rxjs';
 
@@ -75,9 +74,7 @@ export class CompanyCardSalesComponent {
     this.getDeals();
   }
   pageSort(event: any): void {
-    this.pagingOptions.sortDirection = mapPrimengSortEnumToSortDirectionEnum(
-      event.order,
-    );
+    this.pagingOptions.sortDirection = event.order;
     this.pagingOptions.sortField = event.field;
     this.getDeals();
   }
@@ -86,12 +83,12 @@ export class CompanyCardSalesComponent {
   }
   editUpselling(upselling: UpSellingCardView): void {
     this.toastService.success(
-      this.translateService.instant('Common.ComingSoon'),
+      this.translateService.instant('Common.ComminSoon'),
     );
   }
   showDealServiceDialog(upselling: UpSellingCardView): void {
     this.toastService.success(
-      this.translateService.instant('Common.ComingSoon'),
+      this.translateService.instant('Common.ComminSoon'),
     );
   }
   navigateToDealActivityDetailsPage(deal: DealCardView): void {
