@@ -1,3 +1,5 @@
 Web.API/Web.API/obj/
 Web.API/Web.API/bin/
 Web.API/.vs/
+Web.API/ServiceLayer/obj/
+Web.API/ServiceLayer/bin/
