@@ -20,7 +20,7 @@
       <p-toggleswitch [(ngModel)]="isShowAll" (onChange)="onToggleShowAll()">
         <ng-template #handle let-checked="checked">
           <span>{{
-            checked ? ("Common.All" | translate) : ("Common.Last10" | translate)
+            checked ? ("Common.All" | translate) : ("Common.CurrentYear" | translate)
           }}</span>
         </ng-template>
       </p-toggleswitch>
@@ -33,6 +33,7 @@
       [rows]="5"
       [lazy]="true"
       [totalRecords]="totalRecords"
+      (onSort)="pageSort($event)"
       (onPageChange)="pageChange($event)"
       name="activity-table"
     >
@@ -44,11 +45,9 @@
           ></i>
         } @else {
           <a
-            [href]="getSaleDealActivityUrl(activity)"
             class="pi pi-arrow-right"
           ></a>
           <a
-            [href]="getEditDealUrl(activity)"
             class="pi pi-gift text-blue-600"
           ></a>
         }

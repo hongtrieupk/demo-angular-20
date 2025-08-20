@@ -1,4 +1,5 @@
 ﻿using ServiceLayer.DTOs;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ServiceLayer.Common
 {
@@ -133,6 +134,99 @@ namespace ServiceLayer.Common
                 InfoEmail = true,
                 SmsAlert = false
             }
+        };
+        public static readonly IEnumerable<ActivityDTO> mockActivities = new List<ActivityDTO>
+        {
+            new()
+            {
+                  ActivityId = Guid.NewGuid(),
+                  Date = new DateTime(2025, 01, 26),
+                  ActivityTypeId = ActivityTypesEnum.Call,
+                  ActivityType = ActivityTypesEnum.Call.GetDescription(),
+                  Title="1 SSE test",
+                  CustomerPersonName = "Pakkun Pakkun",
+                  AssignedName = "Jiraja Shanin",
+                  Status ="Done",
+                  Note="Nothing"
+            },
+            new()  {
+                  ActivityId = Guid.NewGuid(),
+                  Date = new DateTime(2025, 02, 26),
+                  ActivityTypeId = ActivityTypesEnum.Email,
+                  ActivityType =  ActivityTypesEnum.Email.GetDescription(),
+                  Title="1 SSE test",
+                  CustomerPersonName = "Pakkun Pakkun",
+                  AssignedName = "Jiraja Shanin",
+                  Status ="Done",
+                  Note="Nothing"
+            },
+            new()  {
+                  ActivityId = Guid.NewGuid(),
+                  Date = new DateTime(2024, 03, 26),
+                  ActivityTypeId = ActivityTypesEnum.Upload,
+                  ActivityType = ActivityTypesEnum.Upload.GetDescription(),
+                  Title="1 SSE test",
+                  CustomerPersonName = "Pakkun Pakkun",
+                  AssignedName = "Jiraja Shanin",
+                  Status ="Done",
+                  Note="Nothing"
+            },
+            new()  {
+                  ActivityId = Guid.NewGuid(),
+                  Date = new DateTime(2024, 05, 26),
+                  ActivityTypeId = ActivityTypesEnum.Meeting,
+                  ActivityType = ActivityTypesEnum.Meeting.GetDescription(),
+                  Title="1 SSE test",
+                  CustomerPersonName = "Pakkun Pakkun",
+                  AssignedName = "Jiraja Shanin",
+                  Status ="Done",
+                  Note="Nothing"
+            },
+            new() {
+                  ActivityId = Guid.NewGuid(),
+                  Date = new DateTime(2024, 06, 26),
+                  ActivityTypeId = ActivityTypesEnum.HandoverMeetingDeliveryConsultant,
+                  ActivityType =  ActivityTypesEnum.HandoverMeetingDeliveryConsultant.GetDescription(),
+                  Title="1 SSE test",
+                  CustomerPersonName = "Pakkun Pakkun",
+                  AssignedName = "Jiraja Shanin",
+                  Status ="Done",
+                  Note="Nothing"
+            },
+            new() {
+                  ActivityId = Guid.NewGuid(),
+                  Date = new DateTime(2024, 07, 26),
+                  ActivityTypeId = ActivityTypesEnum.Lunch,
+                  ActivityType = ActivityTypesEnum.Lunch.GetDescription(),
+                  Title="1 SSE test",
+                  CustomerPersonName = "Pakkun Pakkun",
+                  AssignedName = "Jiraja Shanin",
+                  Status ="Done",
+                  Note="Nothing"
+            },
+            new()   {
+                  ActivityId = Guid.NewGuid(),
+                  Date = new DateTime(2024, 08, 26),
+                  ActivityTypeId = ActivityTypesEnum.Task,
+                  ActivityType = ActivityTypesEnum.Task.GetDescription(),
+                  Title="1 SSE test",
+                  CustomerPersonName = "Pakkun Pakkun",
+                  AssignedName = "Jiraja Shanin",
+                  Status ="Done",
+                  Note="Nothing"
+            },
+            new()  {
+                  ActivityId = Guid.NewGuid(),
+                  Date = new DateTime(2024, 09, 26),
+                  ActivityTypeId = ActivityTypesEnum.OperationalMeeting,
+                  ActivityType =  ActivityTypesEnum.OperationalMeeting.GetDescription(),
+                  Title="1 SSE test",
+                  CustomerPersonName = "Pakkun Pakkun",
+                  AssignedName = "Jiraja Shanin",
+                  Status ="Done",
+                  Note="Nothing"
+            },
+
         };
     }
 }

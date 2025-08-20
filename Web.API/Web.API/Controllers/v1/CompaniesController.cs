@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ServiceLayer.Activities;
 using ServiceLayer.Common;
 using ServiceLayer.Companies;
 using ServiceLayer.Contacts;
@@ -27,6 +28,12 @@ namespace Web.API.Controllers.v1
         public async Task<PaginationResult<ContactDTO>> GetContacts(Guid id, [FromQuery] ContactSearchCriteria criteria, CancellationToken cancellationToken)
         {
             return await _companyService.SearchContacts(id, criteria, cancellationToken);
+        }
+
+        [HttpGet("{id}/activities")]
+        public async Task<PaginationResult<ActivityDTO>> GetActivities(Guid id, [FromQuery] ActivitiesSearchCriteria criteria, CancellationToken cancellationToken)
+        {
+            return await _companyService.SearchActivities(id, criteria, cancellationToken);
         }
 
     }

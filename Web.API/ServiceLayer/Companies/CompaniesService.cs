@@ -1,4 +1,5 @@
-﻿using ServiceLayer.Common;
+﻿using ServiceLayer.Activities;
+using ServiceLayer.Common;
 using ServiceLayer.Contacts;
 using ServiceLayer.DTOs;
 
@@ -11,7 +12,7 @@ namespace ServiceLayer.Companies
             var queryCompaniesCommand = new CompaniesQueryDatabaseCommand();
             queryCompaniesCommand.companiesCriteria = criteria;
             var result = await queryCompaniesCommand.Execute(MockDatabase.mockCompanies, criteria);
-            return await Task.FromResult(result);
+            return result;
         }
         public async Task<CompanyDTO> GetByIdAsync(Guid id, CancellationToken cancellationToken)
         {
@@ -42,7 +43,16 @@ namespace ServiceLayer.Companies
             contactQueryCommand.contactCriteria = criteria;
             contactQueryCommand.contactCriteria.CompanyId = compnayId;
             var result = await contactQueryCommand.Execute(MockDatabase.mockContacts, criteria);
-            return await Task.FromResult(result);
+            return result;
+        }
+
+        public async Task<PaginationResult<ActivityDTO>> SearchActivities(Guid compnayId, ActivitiesSearchCriteria criteria, CancellationToken cancellationToken)
+        {
+            var activitiesQueryCommand = new ActivitiesQueryDatabaseCommand();
+            activitiesQueryCommand.activitiesCriteria = criteria;
+            activitiesQueryCommand.activitiesCriteria.CompanyId = compnayId;
+            var result = await activitiesQueryCommand.Execute(MockDatabase.mockActivities, criteria);
+            return result;
         }
     }
 }

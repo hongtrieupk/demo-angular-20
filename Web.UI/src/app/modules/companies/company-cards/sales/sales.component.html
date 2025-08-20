@@ -33,12 +33,10 @@
       [columns]="dealColumns"
       [data]="deals"
       [rows]="5"
-      [lazy]="true"
-      [totalRecords]="totalRecords"
+      [lazy]="false"
+      [sortByClient]="true"
       [showRightButton]="true"
       (onClickedRightButton)="navigateToDealActivityDetailsPage($event)"
-      (onPageChange)="pageChange($event)"
-      (onSort)="pageSort($event)"
       name="company-cards-table-deal"
     >
       <ng-template #tableFooter>

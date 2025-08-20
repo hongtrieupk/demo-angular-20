@@ -5,7 +5,7 @@ import { CompanyInfo } from './models/company-info.model';
 import { ContactCardView } from './models/contact-card-view.model';
 import { PaginationResult, PagingOptions } from '../pagination.model';
 import { ActivityCardView } from './models/activity-card-view.model';
-import { DealActivityTypesEnum } from '../../enums/deal-activity-types.enum';
+import { ActivityTypesEnum } from '../../enums/deal-activity-types.enum';
 import { WorkOrderCardView } from './models/work-order-card-view.model';
 import { UpSellingCardView } from './models/upselling-card-view.model';
 import { DealCardView } from './models/deal-card-view.model';
@@ -58,8 +58,7 @@ export class CompanyClient {
         {
           workOrderId: '90f46726-0b0c-4cee-a486-b6e26c66bde7',
           workOrderNumber: '001231',
-          title:
-            'Undeliverable: Work ordre tildelt hos: Nguyen Company_NOK currency ',
+          title: 'old title',
           createdDate: '07/31/2023',
           dateString: '08/05/2023',
           dueTimeDisplay: '00:12',
@@ -76,7 +75,30 @@ export class CompanyClient {
           customerName: 'Loki Loki	',
           age: '705',
           daysSinceLastUpdate: '558',
-          lastUpdatedByName: 'khaoco tester	',
+          lastUpdatedByName: 'tester	',
+          lastUpdatedDate: '06/04/2025',
+        },
+        {
+          workOrderId: '90f46726-0b0c-4cee-a486-b6e26c66bde7',
+          workOrderNumber: '001111',
+          title: 'new title',
+          createdDate: '07/31/2025',
+          dateString: '08/05/2025',
+          dueTimeDisplay: '00:10',
+          startDate: '08/09/2025',
+          taskTypeName: 'Change request',
+          mainTypeName: 'Customer Request',
+          priority: 'C',
+          category: 'Gruppe Servicedesk',
+          recurrenceTypeName: 'Weekly',
+          estimatedHours: 8.0,
+          isDoneByServiceDesk: true,
+          fixedStatusString: 'Started	',
+          personName: 'Million T',
+          customerName: 'Pakkun D	',
+          age: '705',
+          daysSinceLastUpdate: '558',
+          lastUpdatedByName: 'tester	',
           lastUpdatedDate: '06/04/2025',
         },
       ],
@@ -97,19 +119,16 @@ export class CompanyClient {
   }
   getActivities(
     companyId: string,
+    isShowAll: boolean,
     pagingOption: PagingOptions,
   ): Observable<PaginationResult<ActivityCardView>> {
-    return of({
-      items: this.mockAllActivities(),
-      totalItemCount: 2,
-      totalPages: 1,
+    const url = `companies/${companyId}/activities`;
+    return this.httpClient.get<PaginationResult<ActivityCardView>>(url, {
+      params: {
+        isShowAll,
+        ...pagingOption,
+      },
     });
-    // const url = `companies/${companyId}/activities`;
-    // return this.httpClient.get<PaginationResult<ActivityCardView>>(url, {
-    //   params: {
-    //     ...pagingOption,
-    //   },
-    // });
   }
 
   getLatestActivities(
@@ -187,7 +206,7 @@ export class CompanyClient {
       {
         activityId: '',
         date: '2024-01-26T15:39:00Z',
-        activityTypeId: DealActivityTypesEnum.Call,
+        activityTypeId: ActivityTypesEnum.Call,
         activityType: 'Call',
         title: 'SSE test',
         customerPersonName: 'Phong Man',
@@ -197,7 +216,7 @@ export class CompanyClient {
       {
         activityId: '',
         date: '2023-08-02T13:23:53.02Z',
-        activityTypeId: DealActivityTypesEnum.Email,
+        activityTypeId: ActivityTypesEnum.Email,
         activityType: 'Call',
         title: 'SSE test',
         customerPersonName: 'Pakkun Pakkun',
@@ -207,7 +226,7 @@ export class CompanyClient {
       {
         activityId: '',
         date: '2023-08-02T13:23:53.02Z',
-        activityTypeId: DealActivityTypesEnum.Upload,
+        activityTypeId: ActivityTypesEnum.Upload,
         activityType: 'Upload',
         title: 'SSE test',
         customerPersonName: 'Pakkun Pakkun',
@@ -217,7 +236,7 @@ export class CompanyClient {
       {
         activityId: '',
         date: '2023-08-02T13:23:53.02Z',
-        activityTypeId: DealActivityTypesEnum.Email,
+        activityTypeId: ActivityTypesEnum.Email,
         activityType: 'Call',
         title: 'SSE test',
         customerPersonName: 'Pakkun Pakkun',
@@ -227,7 +246,7 @@ export class CompanyClient {
       {
         activityId: '',
         date: '2023-08-02T13:23:53.02Z',
-        activityTypeId: DealActivityTypesEnum.Email,
+        activityTypeId: ActivityTypesEnum.Email,
         activityType: 'Call',
         title: 'SSE test',
         customerPersonName: 'Pakkun Pakkun',
@@ -241,7 +260,7 @@ export class CompanyClient {
       {
         activityId: '',
         date: '2024-01-26T15:39:00Z',
-        activityTypeId: DealActivityTypesEnum.Call,
+        activityTypeId: ActivityTypesEnum.Call,
         activityType: 'Call',
         title: 'Top 10 test 1',
         customerPersonName: 'Phong Man',
@@ -251,7 +270,7 @@ export class CompanyClient {
       {
         activityId: '',
         date: '2023-08-02T13:23:53.02Z',
-        activityTypeId: DealActivityTypesEnum.Email,
+        activityTypeId: ActivityTypesEnum.Email,
         activityType: 'Call',
         title: 'Top 10 test 2',
         customerPersonName: 'Pakkun Pakkun',
@@ -261,7 +280,7 @@ export class CompanyClient {
       {
         activityId: '',
         date: '2023-08-02T13:23:53.02Z',
-        activityTypeId: DealActivityTypesEnum.Upload,
+        activityTypeId: ActivityTypesEnum.Upload,
         activityType: 'Upload',
         title: 'Top 10 test 1 3',
         customerPersonName: 'Pakkun Pakkun',

@@ -8,13 +8,14 @@ import { ToggleSwitchModule } from 'primeng/toggleswitch';
 import { activitiesColumns } from './table-columns.constant';
 import { ToastService } from '../../../@shared/components/toast/toast.service';
 import { TableComponent } from '../../../@shared/components/table/table.component';
-import { isEmptyGuid } from '../../../../core/ultis/string-utils';
-import { DealActivityTypesEnum } from '../../../../core/enums/deal-activity-types.enum';
+import { isEmptyGuid, toUpperFirstChar } from '../../../../core/ultis/string-utils';
+import { ActivityTypesEnum } from '../../../../core/enums/deal-activity-types.enum';
 import { PagingOptions } from '../../../../core/api-clients/pagination.model';
 import { ActivityCardView } from '../../../../core/api-clients/company/models/activity-card-view.model';
 import { CompanyInfo } from '../../../../core/api-clients/company/models/company-info.model';
 import { CompanyClient } from '../../../../core/api-clients/company/company.client';
 import { Subscription } from 'rxjs';
+import { LoadingService } from '../../../@shared/components/spinner/loading.service';
 
 @Component({
   selector: 'app-company-card-activities',
@@ -30,9 +31,9 @@ import { Subscription } from 'rxjs';
   ],
 })
 export class CompanyCardActivitiesComponent {
+  private loadingService = inject(LoadingService);
   private toastService = inject(ToastService);
   private translateService = inject(TranslateService);
-  private subscription = new Subscription();
   getCompanyInfo = inject(ROUTER_OUTLET_DATA) as Signal<CompanyInfo>;
   companyId = this.getCompanyInfo().id;
   customerPrimaryContactId = this.getCompanyInfo().companyPrimaryContactId;
@@ -55,23 +56,15 @@ export class CompanyCardActivitiesComponent {
     return !activity.dealId || isEmptyGuid(activity.dealId);
   }
   onEditActivityCell(activity: ActivityCardView): void {
-    if (activity.activityTypeId === DealActivityTypesEnum.Note) {
-      this.showEditDealActivityNoteDialog(activity);
-    } else {
-      this.showEditDealActivityDialog(activity);
-    }
-  }
-  private showEditDealActivityNoteDialog(activity: ActivityCardView) {
     this.toastService.success(
       this.translateService.instant('Common.ComminSoon'),
     );
   }
 
-  getSaleDealActivityUrl(activity: ActivityCardView): string {
-    return `/Deal/LeadActivities?dealId=${activity.dealId}`;
-  }
-  getEditDealUrl(activity: ActivityCardView): string {
-    return `/Deal/EditDeal?dealId=${activity.dealId}`;
+  pageSort(event: any): void {
+    this.pagingOptions.sortField = toUpperFirstChar(event.field);
+    this.pagingOptions.sortDirection = event.order;
+    this.getActivities();
   }
   pageChange(event: any) {
     this.pagingOptions.pageSize = event.rows;
@@ -80,17 +73,14 @@ export class CompanyCardActivitiesComponent {
   }
 
   private getActivities(): void {
-    const activities$ = this.isShowAll
-      ? this.companyClient.getActivities(this.companyId, this.pagingOptions)
-      : this.companyClient.getLatestActivities(
-          this.companyId,
-          this.pagingOptions,
-        );
-    this.subscription = activities$.subscribe((result) => {
-      this.activities = result.items;
-      this.totalRecords = result.totalItemCount;
-      this.subscription.unsubscribe();
-    });
+    this.loadingService.show();
+    this.companyClient
+      .getActivities(this.companyId, this.isShowAll, this.pagingOptions)
+      .subscribe((result) => {
+        this.activities = result.items;
+        this.totalRecords = result.totalItemCount;
+        this.loadingService.hide();
+      });
   }
   showCreateDealActivityNoteDialog() {
     this.toastService.success(
@@ -99,12 +89,6 @@ export class CompanyCardActivitiesComponent {
   }
 
   showCreateDealActivityDialog() {
-    this.toastService.success(
-      this.translateService.instant('Common.ComminSoon'),
-    );
-  }
-
-  showEditDealActivityDialog(dealActivity: ActivityCardView) {
     this.toastService.success(
       this.translateService.instant('Common.ComminSoon'),
     );

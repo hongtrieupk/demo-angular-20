@@ -1,4 +1,5 @@
-﻿using ServiceLayer.Common;
+﻿using ServiceLayer.Activities;
+using ServiceLayer.Common;
 using ServiceLayer.Contacts;
 using ServiceLayer.DTOs;
 
@@ -9,5 +10,6 @@ namespace ServiceLayer.Companies
         Task<PaginationResult<CompanyOveralDTO>> SearchCompanies(CompaniesSearchCriteria criteria, CancellationToken cancellationToken);
         Task<CompanyDTO> GetByIdAsync(Guid id, CancellationToken cancellationToken);
         Task<PaginationResult<ContactDTO>> SearchContacts(Guid compnayId, ContactSearchCriteria criteria, CancellationToken cancellationToken);
+        Task<PaginationResult<ActivityDTO>> SearchActivities(Guid compnayId, ActivitiesSearchCriteria criteria, CancellationToken cancellationToken);
     }
 }

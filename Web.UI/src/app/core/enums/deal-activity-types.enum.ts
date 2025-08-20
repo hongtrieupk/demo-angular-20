@@ -1,4 +1,4 @@
-export const enum DealActivityTypesEnum {
+export const enum ActivityTypesEnum {
     Call = 1,
     Meeting = 2,
     Task = 3,

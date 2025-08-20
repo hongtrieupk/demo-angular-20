@@ -87,12 +87,10 @@
     [columns]="workOrderColumns"
     [data]="workOrders"
     [rows]="5"
-    [lazy]="true"
-    [totalRecords]="totalRecords"
+    [lazy]="false"
+    [sortByClient]="true"
     [showRightButton]="true"
     (onClickedRightButton)="navigateToEditWorkOrderPage($event)"
-    (onPageChange)="pageChange($event)"
-    (onSort)="pageSort($event)"
     name="company-cards-table-work-order"
   >
   </app-table>

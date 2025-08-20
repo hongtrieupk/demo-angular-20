@@ -1,26 +1,26 @@
 import { ActivityCardView } from '../../../../core/api-clients/company/models/activity-card-view.model';
-import { DealActivityTypesEnum } from '../../../../core/enums/deal-activity-types.enum';
+import { ActivityTypesEnum } from '../../../../core/enums/deal-activity-types.enum';
 import { Column } from '../../../@shared/components/table/column.model';
 
 const getActivityTypeIconClass = (
-  activityTypeId: DealActivityTypesEnum,
+  activityTypeId: ActivityTypesEnum,
 ): string => {
   switch (activityTypeId) {
-    case DealActivityTypesEnum.Call:
-    case DealActivityTypesEnum.Lunch:
+    case ActivityTypesEnum.Call:
+    case ActivityTypesEnum.Lunch:
       return 'pi pi-phone';
-    case DealActivityTypesEnum.Email:
+    case ActivityTypesEnum.Email:
       return 'pi pi-telegram';
-    case DealActivityTypesEnum.Upload:
+    case ActivityTypesEnum.Upload:
       return 'pi pi-upload';
-    case DealActivityTypesEnum.Task:
+    case ActivityTypesEnum.Task:
       return 'pi pi-clock';
-    case DealActivityTypesEnum.Meeting:
-    case DealActivityTypesEnum.HandoverMeetingDeliveryConsultant:
-    case DealActivityTypesEnum.HandoverMeetingSalesConsutant:
-    case DealActivityTypesEnum.OperationalMeeting:
+    case ActivityTypesEnum.Meeting:
+    case ActivityTypesEnum.HandoverMeetingDeliveryConsultant:
+    case ActivityTypesEnum.HandoverMeetingSalesConsutant:
+    case ActivityTypesEnum.OperationalMeeting:
       return 'pi pi-calendar-minus';
-    case DealActivityTypesEnum.CustomerDevelopment:
+    case ActivityTypesEnum.CustomerDevelopment:
       return 'pi pi-cog';
     default:
       return '';
@@ -32,6 +32,7 @@ export const activitiesColumns: Column<ActivityCardView>[] = [
     dataKey: 'date',
     cellHorizontalAlign: 'center',
     cellType: 'date',
+    isSortable: true
   },
   {
     i18nTitleKey: 'Company.Type',
