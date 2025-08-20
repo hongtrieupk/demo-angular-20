@@ -29,7 +29,9 @@
     "NoDataDisplay": "No data to show",
     "ErrorTitleModal": "Error",
     "NetworkConnectionError": "Network connection error",
-    "NetworkConnectionErrorMessage": "Somethime went wrong with the network / api server please try again or contact administrator"
+    "AnInternalServerErrorOccurred": "Internal server error",
+    "NetworkConnectionErrorMessage": "Somethime went wrong with the network please try again",
+    "ExceptionErrorMsg": "An internal server error has been occerred please contact the administrator"
 
   }
 }

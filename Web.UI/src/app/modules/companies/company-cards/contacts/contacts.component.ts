@@ -39,7 +39,7 @@ export class CompanyCardContactComponent {
   contacts: ContactCardView[] = [];
   contactColumns = contactColumns;
   pagingOptions: PagingOptions = {
-    pageSize: 20,
+    pageSize: 5,
     pageNumber: 1,
   };
   totalRecords = 0;

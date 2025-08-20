@@ -40,7 +40,7 @@ export class CompanyCardActivitiesComponent {
   activities: ActivityCardView[] = [];
   activitiesColumns = activitiesColumns;
   pagingOptions: PagingOptions = {
-    pageSize: 20,
+    pageSize: 5,
     pageNumber: 1,
   };
   totalRecords = 0;

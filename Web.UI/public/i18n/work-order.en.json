@@ -1,7 +1,7 @@
 {
   "WorkOrder": {
     "MainType": "Main Type",
-    "IsInCludeHandedAsInternal": "Incl. handled as internal",
+    "IsInCludeHandedAsInternal": "Incl. Deleted",
     "NewByPersonCompany": "New by person/company",
     "WorkOrderNumber": "Work order no",
     "TaskType": "Task type",

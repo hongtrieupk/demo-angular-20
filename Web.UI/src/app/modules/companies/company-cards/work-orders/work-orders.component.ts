@@ -70,7 +70,7 @@ export class CompanyCardWorkOrdersComponent {
   toDate: Date | undefined;
   workOrders: WorkOrderCardView[] = [];
   pagingOptions: PagingOptions = {
-    pageSize: 20,
+    pageSize: 5,
     pageNumber: 1,
   };
   totalRecords = 0;

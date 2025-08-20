@@ -48,7 +48,7 @@ export class CompanyCardSalesComponent {
   upSellingTableCols = upSellingCols;
   sumTotal = 0;
   pagingOptions: PagingOptions = {
-    pageSize: 20,
+    pageSize: 5,
     pageNumber: 1,
   };
   totalRecords = 0;

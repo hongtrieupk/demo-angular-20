@@ -30,13 +30,8 @@ export class CompanyClient {
   }
 
   getById(id: string): Observable<CompanyInfo> {
-    const mockCompanyInfos: CompanyInfo = {
-      id: '6489930d-9caa-420a-b096-f1602e771e45',
-      name: 'ABC Custard',
-      comment:
-        '<i><u></u></i>Alle innkjøp skal avtales med<br><b style="color: #e26a6a">Test</b><br>',
-    } as CompanyInfo;
-    return of(mockCompanyInfos);
+    const url = `companies/${id}`;
+    return this.httpClient.get<CompanyInfo>(url);
   }
   searchWorkOrders(
     companyId: string,

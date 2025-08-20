@@ -15,5 +15,12 @@ namespace Web.API.Controllers.v1
         {
            return await _companyService.GetCompanies(criteria, cancellationToken);
         }
+
+        [HttpGet("{id}")]
+        public async Task<CompanyDTO> GetByIdAsync(Guid id, CancellationToken cancellationToken)
+        {
+            return await _companyService.GetByIdAsync(id, cancellationToken);
+        }
+
     }
 }

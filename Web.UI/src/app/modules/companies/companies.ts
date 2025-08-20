@@ -30,7 +30,7 @@ export class Companies {
   companies: CompanyOveralInfo[] = [];
   columns = companyColumns;
   pagingOptions: PagingOptions = {
-    pageSize: 20,
+    pageSize: 5,
     pageNumber: 1,
   };
   totalRecords = 0;

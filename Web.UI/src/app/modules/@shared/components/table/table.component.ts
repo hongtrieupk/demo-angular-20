@@ -94,7 +94,7 @@ export class TableComponent<TRowData> {
   page = input<number>(0); // page start from 0
   first = computed(() => this.page() * this.rows());
   defaultRowsPerPageOptions = [1, 5, 10, 20, 50, 100, 200];
-  defaultRowsPerPage = 10;
+  defaultRowsPerPage = 5;
   rows = input<number>(this.defaultRowsPerPage);
   rowsPerPageOptions = input<number[]>(this.defaultRowsPerPageOptions);
   showPaginator = input<boolean>(true);
