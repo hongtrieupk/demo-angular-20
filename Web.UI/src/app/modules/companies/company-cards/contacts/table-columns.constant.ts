@@ -11,37 +11,30 @@ export const contactColumns: Column<ContactCardView>[] = [
     {
         i18nTitleKey: 'Company.LastName',
         dataKey: 'lastName',
-        isSortable: true,
     },
     {
         i18nTitleKey: 'Company.Title',
         dataKey: 'title',
-        isSortable: true,
     },
     {
         i18nTitleKey: 'Company.Email',
         dataKey: 'email',
-        isSortable: true,
     },
     {
         i18nTitleKey: 'Company.Tags',
         dataKey: 'tags',
-        isSortable: true,
     },
     {
         i18nTitleKey: 'Company.Phone',
         dataKey: 'phone',
-        isSortable: true,
     },
     {
         i18nTitleKey: 'Company.MobilePhone',
         dataKey: 'mobilePhone',
-        isSortable: true,
     },
     {
         i18nTitleKey: 'Company.LastActivity',
         dataKey: 'lastActivity',
-        isSortable: true,
     },
     {
         i18nTitleKey: 'Company.SMSAlert',
@@ -52,7 +45,6 @@ export const contactColumns: Column<ContactCardView>[] = [
             readonly: true,
         }),
         cellHorizontalAlign: 'center',
-        isSortable: true,
     },
     {
         i18nTitleKey: 'Company.InfoEmail',
@@ -63,6 +55,5 @@ export const contactColumns: Column<ContactCardView>[] = [
             readonly: true,
         }),
         cellHorizontalAlign: 'center',
-        isSortable: true,
     },
 ];

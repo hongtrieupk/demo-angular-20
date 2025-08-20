@@ -2,11 +2,11 @@
 {
     public abstract class BaseQueryDatabaseCommand<T> where T : class
     {
-        protected SearchCriteria searchCriteria { get; set; }
+        protected SearchCriteria criteria { get; set; }
 
         protected BaseQueryDatabaseCommand()
         {
-            this.searchCriteria = new SearchCriteria();
+            this.criteria = new SearchCriteria();
         }
 
         /// <summary>
@@ -16,7 +16,7 @@
         /// <returns></returns>
         public async Task<PaginationResult<T>> Execute(IEnumerable<T> data, SearchCriteria searchCriteria)
         {
-            this.searchCriteria = searchCriteria;
+            this.criteria = searchCriteria;
             data = BuildWhereCondition(data);
             data = BuildOrderCondition(data);
             var result = await this.Paginate(data);
@@ -25,13 +25,13 @@
         private async Task<PaginationResult<T>> Paginate(IEnumerable<T> data)
         {
             int total = data.Count();
-            var paginatedItems = data.Skip((this.searchCriteria.PageNumber - 1) * this.searchCriteria.PageSize).Take(this.searchCriteria.PageSize);
+            var paginatedItems = data.Skip((this.criteria.PageNumber - 1) * this.criteria.PageSize).Take(this.criteria.PageSize);
             var result = new PaginationResult<T>()
             {
                 Items = paginatedItems,
                 TotalItemCount = total,
-                PageNumber = this.searchCriteria.PageNumber,
-                PageSize = this.searchCriteria.PageSize
+                PageNumber = this.criteria.PageNumber,
+                PageSize = this.criteria.PageSize
             };
             return await Task.FromResult(result);
         }

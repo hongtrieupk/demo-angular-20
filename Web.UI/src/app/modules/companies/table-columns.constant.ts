@@ -33,6 +33,6 @@ export const companyColumns: Column<CompanyOveralInfo>[] = [
             label: row.web,
             routerLink: `https://${row.web}`,
         }),
-        isSortable: true,
+        isSortable: false,
     },
 ];

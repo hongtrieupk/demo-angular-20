@@ -1,6 +1,4 @@
 export interface ContactCardView {
-    customerPersonId: string;
-    customerId: string;
     firstName: string;
     lastName: string;
     title: string;
@@ -11,10 +9,4 @@ export interface ContactCardView {
     lastActivity: string;
     smsAlert: boolean;
     infoEmail: boolean;
-    isAdmin: boolean;
-    inactive: boolean;
-    bounced: string;
-    unsubscribed: string;
-    isLocked: boolean;
-    isPrimaryContact: boolean;
 }

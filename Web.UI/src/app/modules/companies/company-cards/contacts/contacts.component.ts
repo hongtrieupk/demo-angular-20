@@ -14,6 +14,7 @@ import { contactColumns } from './table-columns.constant';
 import { PagingOptions } from '../../../../core/api-clients/pagination.model';
 import { ToastService } from '../../../@shared/components/toast/toast.service';
 import { CompanyClient } from '../../../../core/api-clients/company/company.client';
+import { toUpperFirstChar } from '../../../../core/ultis/string-utils';
 
 @Component({
   selector: 'app-company-card-contacts',
@@ -43,11 +44,6 @@ export class CompanyCardContactComponent {
     pageNumber: 1,
   };
   totalRecords = 0;
-  getRowClasses = (row: ContactCardView, rowIndex: number) => {
-    return {
-      'bg-yellow-50': row.isPrimaryContact,
-    };
-  };
 
   constructor() {
     this.companyId = this.getCompanyInfo().id;
@@ -60,7 +56,7 @@ export class CompanyCardContactComponent {
   }
   pageSort(event: any): void {
     this.pagingOptions.sortDirection = event.order;
-    this.pagingOptions.sortField = event.field;
+    this.pagingOptions.sortField = toUpperFirstChar(event.field);
     this.getContacts();
   }
   onToggleShowOldContacts(): void {

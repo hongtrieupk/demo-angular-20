@@ -5,21 +5,21 @@ namespace ServiceLayer.Companies
 {
     public class CompaniesQueryDatabaseCommand : BaseQueryDatabaseCommand<CompanyOveralDTO>
     {
-        public CompaniesSearchCriteria criteria { get; set; }
+        public CompaniesSearchCriteria companiesCriteria { get; set; }
         public CompaniesQueryDatabaseCommand()
         {
-            criteria = new CompaniesSearchCriteria();
+            companiesCriteria = new CompaniesSearchCriteria();
         }
 
         protected override IEnumerable<CompanyOveralDTO> BuildOrderCondition(IEnumerable<CompanyOveralDTO> data)
         {
-            switch(criteria.SortField)
+            switch(companiesCriteria.SortField)
             {
                 case nameof(CompanyOveralDTO.Name):
-                    data = criteria.SortDirection == SortDirection.Asc ? data.OrderBy(x => x.Name) : data.OrderByDescending(x => x.Name);
+                    data = companiesCriteria.SortDirection == SortDirection.Asc ? data.OrderBy(x => x.Name) : data.OrderByDescending(x => x.Name);
                     break;
                 case nameof(CompanyOveralDTO.OrgNumber):
-                    data = criteria.SortDirection == SortDirection.Asc ? data.OrderBy(x => x.OrgNumber) : data.OrderByDescending(x => x.OrgNumber);
+                    data = companiesCriteria.SortDirection == SortDirection.Asc ? data.OrderBy(x => x.OrgNumber) : data.OrderByDescending(x => x.OrgNumber);
                     break;
                 default:
                     break;
@@ -30,13 +30,13 @@ namespace ServiceLayer.Companies
         protected override IEnumerable<CompanyOveralDTO> BuildWhereCondition(IEnumerable<CompanyOveralDTO> data)
         {
             var whereCondition = "WHERE ";
-            if (!string.IsNullOrEmpty(this.criteria.Name))
+            if (!string.IsNullOrEmpty(companiesCriteria.Name))
             {
-                whereCondition = $"{whereCondition} Name Like('{this.criteria.Name}%')";
-                data = data.Where(x => x.Name.Contains(this.criteria.Name, StringComparison.OrdinalIgnoreCase));
+                whereCondition = $"{whereCondition} Name Like('{companiesCriteria.Name}%')";
+                data = data.Where(x => x.Name.Contains(companiesCriteria.Name, StringComparison.OrdinalIgnoreCase));
             }
             return data;
-            // in reality could be return whereCondition
+            // in reality could be return whereCondition as a string
         }
     }
 }

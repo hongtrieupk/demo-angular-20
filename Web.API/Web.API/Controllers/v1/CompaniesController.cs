@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ServiceLayer.Common;
 using ServiceLayer.Companies;
+using ServiceLayer.Contacts;
 using ServiceLayer.DTOs;
 
 namespace Web.API.Controllers.v1
@@ -13,13 +14,19 @@ namespace Web.API.Controllers.v1
         [HttpGet("")]
         public async Task<PaginationResult<CompanyOveralDTO>> GetCompanies([FromQuery] CompaniesSearchCriteria criteria, CancellationToken cancellationToken)
         {
-           return await _companyService.GetCompanies(criteria, cancellationToken);
+           return await _companyService.SearchCompanies(criteria, cancellationToken);
         }
 
         [HttpGet("{id}")]
-        public async Task<CompanyDTO> GetByIdAsync(Guid id, CancellationToken cancellationToken)
+        public async Task<CompanyDTO> GetAsync(Guid id, CancellationToken cancellationToken)
         {
             return await _companyService.GetByIdAsync(id, cancellationToken);
+        }
+
+        [HttpGet("{id}/contacts")]
+        public async Task<PaginationResult<ContactDTO>> GetContacts(Guid id, [FromQuery] ContactSearchCriteria criteria, CancellationToken cancellationToken)
+        {
+            return await _companyService.SearchContacts(id, criteria, cancellationToken);
         }
 
     }
