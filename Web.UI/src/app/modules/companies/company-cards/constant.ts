@@ -48,13 +48,13 @@ export const TABS = [
 
 export const getCompanyClassImageSrc = (score: number): string => {
     if (score > 8) {
-        return '/img/nps/happy.png';
+        return './img/nps/happy.png';
     }
     if (score > 6) {
-        return '/img/nps/sad.png';
+        return './img/nps/sad.png';
     }
     if (score > 0) {
-        return '/img/nps/angry.png';
+        return './img/nps/angry.png';
     }
-    return '/img/nps/nps.png';
+    return './img/nps/nps.png';
 };

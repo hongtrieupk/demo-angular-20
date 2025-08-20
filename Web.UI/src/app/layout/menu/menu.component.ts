@@ -27,7 +27,7 @@ export class MenuComponent {
                         label: 'R&D Department',
                         icon: 'pi pi-fw pi-building',
                         routerLink: [
-                            '/companies/view/6489930d-9caa-420a-b096-f1602e771e45',
+                            '/companies',
                         ],
                     },
                 ],
