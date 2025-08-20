@@ -82,7 +82,7 @@ export class ConditionsTableComponent
       operators: [
         {
           id: SingleValueOperatorEnum.Like,
-          value: '%',
+          value: 'Contains',
         },
         {
           id: SingleValueOperatorEnum.Equal,
