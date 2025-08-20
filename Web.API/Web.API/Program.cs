@@ -1,11 +1,19 @@
-using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.OpenApi.Models;
 using ServiceLayer.Companies;
 
 var builder = WebApplication.CreateBuilder(args);
 var appName = "Web.API";
 // Add services to the container.
-
+const string ALLOW_ORIGINS_POLICY = "_allowOriginsPolicy";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(ALLOW_ORIGINS_POLICY,
+        policy => policy
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+    );
+});
 builder.Services.AddControllers();
 builder.Services.AddApiVersioning();
 builder.Services.AddEndpointsApiExplorer();
@@ -27,6 +35,7 @@ if (app.Environment.IsDevelopment())
 // Configure the HTTP request pipeline.
 
 app.UseHttpsRedirection();
+app.UseCors(ALLOW_ORIGINS_POLICY);
 
 app.UseAuthorization();
 

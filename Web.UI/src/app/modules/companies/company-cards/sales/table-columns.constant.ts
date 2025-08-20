@@ -34,7 +34,7 @@ export const dealColumns: Column<DealCardView>[] = [
         isSortable: true,
     },
     {
-        i18nTitleKey: 'Deal.Sum',
+        i18nTitleKey: 'Deal.Price',
         dataKey: 'totalPrice',
         isSortable: true,
     },

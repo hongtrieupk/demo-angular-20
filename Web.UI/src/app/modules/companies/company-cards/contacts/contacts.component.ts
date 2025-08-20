@@ -32,6 +32,7 @@ import { CompanyClient } from '../../../../core/api-clients/company/company.clie
 })
 export class CompanyCardContactComponent {
   private loadingService = inject(LoadingService);
+  private companyClient = inject(CompanyClient);
   private toastService = inject(ToastService);
   private getCompanyInfo = inject(ROUTER_OUTLET_DATA) as Signal<CompanyInfo>;
   isShowOldContacts = false;
@@ -49,8 +50,8 @@ export class CompanyCardContactComponent {
     };
   };
 
-  constructor(private companyClient: CompanyClient) {
-    this.companyId = this.getCompanyInfo().customerId;
+  constructor() {
+    this.companyId = this.getCompanyInfo().id;
     this.getContacts();
   }
   pageChange(event: any) {

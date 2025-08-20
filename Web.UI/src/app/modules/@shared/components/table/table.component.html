@@ -7,8 +7,6 @@
   class="[&_thead]:z-1"
   [loading]="loading()"
   (onHeaderCheckboxToggle)="onHeaderCheckboxToggle.emit($event)"
-  (onRowSelect)="onRowSelect.emit($event)"
-  (onRowUnselect)="onRowUnSelect.emit($event)"
   (selectAllChange)="onSelectAllChange.emit($event)"
   (selectionChange)="onSelectionChange.emit($event)"
   [sortMode]="sortMode()"
@@ -20,9 +18,6 @@
   [(selection)]="selectedRows"
   [rowHover]="rowHover()"
   [dataKey]="dataKey()"
-  [expandedRowKeys]="enableRowExpansion() ? (expandedRowKeys() ?? {}) : {}"
-  [rowExpandMode]="rowExpandMode()"
-  (onRowExpand)="onRowExpand.emit($event)"
   [stripedRows]="stripedRows()"
   [ngClass]="{
     '[&_tbody>tr:first-child>td]:border-t-1': !showColumnHeader(),
@@ -31,18 +26,6 @@
   @if (showColumnHeader()) {
     <ng-template #header>
       <tr>
-        @if (enableRowExpansion()) {
-          <th class="w-10 min-w-10 max-w-10"></th>
-        }
-        @if (showRowsSelectionByCheckbox()) {
-          <th>
-            <div
-              class="flex flex-row w-full h-full justify-center items-center"
-            >
-              <p-tableHeaderCheckbox />
-            </div>
-          </th>
-        }
         @for (column of selectedColumns; track $index) {
           <th
             [ngClass]="getColumnHeaderClasses(column)"
@@ -116,9 +99,6 @@
             }
           </th>
         }
-        @if (showMoveRowButton()) {
-          <th class="w-10 min-w-10 max-w-10"></th>
-        }
       </tr>
     </ng-template>
   }
@@ -130,29 +110,6 @@
     let-editing="editing"
   >
     <tr [ngClass]="getRowClasses(rowData, rowIndex)">
-      @if (enableRowExpansion()) {
-        <td>
-          <div class="flex flex-row w-full h-full justify-center items-center">
-            <p-button
-              type="button"
-              pRipple
-              [pRowToggler]="rowData"
-              [text]="true"
-              [rounded]="true"
-              [plain]="true"
-              [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"
-            />
-          </div>
-        </td>
-      }
-      @if (showRowsSelectionByCheckbox()) {
-        <td class="text-[13px] text-(--color-table-body-text) w-0 h-0">
-          <div class="flex flex-row w-full h-full justify-center items-center">
-            <p-tableCheckbox [value]="rowData" />
-          </div>
-        </td>
-      }
-
       @for (
         column of selectedColumns;
         let columnIndex = $index;
@@ -238,24 +195,8 @@
           }
         </td>
       }
-
-      @if (showMoveRowButton()) {
-        <td>
-          <div class="flex flex-row w-full h-full justify-center items-center">
-            <i class="pi pi-arrows-alt text-[13px] cursor-move"></i>
-          </div>
-        </td>
-      }
     </tr>
   </ng-template>
-  @if (expandedRowTemplateRef()) {
-    <ng-template #expandedrow let-rowData>
-      <ng-container
-        [ngTemplateOutlet]="expandedRowTemplateRef()"
-        [ngTemplateOutletContext]="getRowTemplateOutletContext(rowData)"
-      ></ng-container>
-    </ng-template>
-  }
   @if (footerTemplateRef()) {
     <ng-template #footer>
       <ng-container [ngTemplateOutlet]="footerTemplateRef()"></ng-container>
@@ -270,7 +211,7 @@
           ></ng-container>
         } @else {
           <div class="text-center">
-            {{ "Message.NoDataDisplay" | translate }}
+            {{ "Common.NoDataDisplay" | translate }}
           </div>
         }
       </td>
@@ -280,37 +221,6 @@
 
 <div class="flex flex-row items-center">
   <div class="flex flex-row gap-2 my-2">
-    @if (showReloadButton()) {
-      <p-button
-        icon="pi pi-sync"
-        severity="primary"
-        [title]="'Table.RefreshTitle' | translate"
-        (onClick)="onClickedReloadButton.emit()"
-      ></p-button>
-    }
-
-    @if (showAddNewRowButton()) {
-      <p-button
-        icon="pi pi-plus"
-        severity="primary"
-        [title]="'Table.AddTitle' | translate"
-        (onClick)="onClickedAddNewRowButton.emit()"
-      ></p-button>
-      <p-button
-        icon="pi pi-save"
-        severity="secondary"
-        [title]="'Table.SaveTitle' | translate"
-        (onClick)="onClickedSaveNewRowsButton.emit()"
-      ></p-button>
-      <p-button
-        icon="pi pi-times"
-        severity="secondary"
-        [title]="'Table.CancelTitle' | translate"
-        (onClick)="onClickedCancelNewRowsButton.emit()"
-      ></p-button>
-    }
-  </div>
-
   @if (showPaginator()) {
     <p-paginator
       class="grow"

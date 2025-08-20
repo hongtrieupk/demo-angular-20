@@ -19,13 +19,12 @@ export class MenuComponent {
                 label: 'Menu bar',
                 items: [
                     {
-                        label: 'List',
+                        label: 'Companies',
                         icon: 'pi pi-fw pi-home',
                         routerLink: ['/companies'],
                     },
                     {
-                        // temporarily  define routing for company cards feature
-                        label: 'ABC Custard',
+                        label: 'R&D Department',
                         icon: 'pi pi-fw pi-building',
                         routerLink: [
                             '/companies/view/6489930d-9caa-420a-b096-f1602e771e45',

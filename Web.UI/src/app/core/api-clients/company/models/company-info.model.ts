@@ -1,5 +1,5 @@
 export class CompanyInfo {
-    customerId: string;
+    id: string;
     name: string;
     comment: string;
     erpNumber: string;
@@ -27,7 +27,7 @@ export class CompanyInfo {
     emailInvoices: string[];
     tAMName: string;
     constructor() {
-        this.customerId = '';
+        this.id = '';
         this.name = '';
         this.comment = '';
         this.erpNumber = '';

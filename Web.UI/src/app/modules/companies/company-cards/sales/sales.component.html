@@ -29,7 +29,7 @@
     </div>
   </div>
   <div class="pt-[10px]">
-    <up-table
+    <app-table
       [columns]="dealColumns"
       [data]="deals"
       [rows]="20"
@@ -41,7 +41,16 @@
       (onSort)="pageSort($event)"
       name="company-cards-table-deal"
     >
-    </up-table>
+      <ng-template #tableFooter>
+        <tr>
+          <td colspan="6" class="border-r-none"></td>
+          <td class="font-bold p-3 pb-0 text-right border-r-none border-l-none">
+            {{ sumTotal }}
+          </td>
+          <td class="border-l-none" colspan="4"></td>
+        </tr>
+      </ng-template>
+    </app-table>
   </div>
 </p-panel>
 <p-panel
@@ -50,7 +59,7 @@
   styleClass="mt-[10px]"
 >
   <div>
-    <up-table
+    <app-table
       [columns]="upSellingTableCols"
       [data]="upSellings"
       [rows]="4000"
@@ -77,6 +86,6 @@
           >
         }
       </ng-template>
-    </up-table>
+    </app-table>
   </div>
 </p-panel>

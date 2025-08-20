@@ -5,6 +5,7 @@ import { CompanyOveralInfo } from '../../core/api-clients/company/models/company
 import { companyColumns } from './table-columns.constant';
 import { PagingOptions } from '../../core/api-clients/pagination.model';
 import { LoadingService } from '../@shared/components/spinner/loading.service';
+import { CompanyClient } from '../../core/api-clients/company/company.client';
 
 @Component({
   selector: 'app-companies',
@@ -14,6 +15,7 @@ import { LoadingService } from '../@shared/components/spinner/loading.service';
 })
 export class Companies {
   private loadingService = inject(LoadingService);
+  private companyClient = inject(CompanyClient);
   companies: CompanyOveralInfo[] = [];
   columns = companyColumns;
   pagingOptions: PagingOptions = {
@@ -21,6 +23,9 @@ export class Companies {
     pageNumber: 1,
   };
   totalRecords = 0;
+  constructor() {
+    this.getCompanies();
+  }
   pageChange(event: any) {
     this.pagingOptions.pageSize = event.rows;
     this.pagingOptions.pageNumber = event.page + 1;
@@ -32,17 +37,15 @@ export class Companies {
   }
   private getCompanies(): void {
     this.loadingService.show();
-    // this.companyClient
-    //   .getCompanies(this.pagingOptions)
-    //   .subscribe({
-    //     next: (result) => {
-    //       this.companies = result.items;
-    //       this.totalRecords = result.totalItemCount;
-    //       this.loadingService.hide();
-    //     },
-    //     error: () => {
-    //       this.loadingService.hide();
-    //     },
-    //   });
+    this.companyClient.getCompanies(this.pagingOptions).subscribe({
+      next: (result) => {
+        this.companies = result.items;
+        this.totalRecords = result.totalItemCount;
+        this.loadingService.hide();
+      },
+      error: () => {
+        this.loadingService.hide();
+      },
+    });
   }
 }

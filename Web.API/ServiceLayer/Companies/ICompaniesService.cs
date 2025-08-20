@@ -1,9 +1,10 @@
-﻿using ServiceLayer.DTOs;
+﻿using ServiceLayer.Common;
+using ServiceLayer.DTOs;
 
 namespace ServiceLayer.Companies
 {
     public interface ICompaniesService
     {
-        Task<IEnumerable<CompanyOveralDTO>> SearchCompany(CancellationToken cancellationToken);
+        Task<PaginationResult<CompanyOveralDTO>> SearchCompanies(CancellationToken cancellationToken);
     }
 }

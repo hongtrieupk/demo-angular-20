@@ -2,6 +2,7 @@
   "Common": {
     "Yes": "Yes",
     "No": "No",
+    "OK": "Ok",
     "AddNew": "Add new",
     "ComminSoon": "Coming soon ...",
     "Show": "Show",
@@ -23,6 +24,11 @@
     "Priority": "Priority",
     "ContactPerson": "Contact Person",
     "Title": "Title",
-    "NoService": "No services"
+    "NoService": "No services",
+    "NoDataDisplay": "No data to show",
+    "ErrorTitleModal": "Error",
+    "NetworkConnectionError": "Network connection error",
+    "NetworkConnectionErrorMessage": "Somethime went wrong with the network / api server please try again or contact administrator"
+
   }
 }

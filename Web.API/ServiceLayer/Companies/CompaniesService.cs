@@ -1,12 +1,13 @@
-﻿using ServiceLayer.DTOs;
+﻿using ServiceLayer.Common;
+using ServiceLayer.DTOs;
 
 namespace ServiceLayer.Companies
 {
     public class CompaniesService : ICompaniesService
     {
-        public async Task<IEnumerable<CompanyOveralDTO>> SearchCompany(CancellationToken cancellationToken)
+        public async Task<PaginationResult<CompanyOveralDTO>> SearchCompanies(CancellationToken cancellationToken)
         {
-            return await Task.FromResult(new List<CompanyOveralDTO>
+            var items = new List<CompanyOveralDTO>
             {
                 new() {
                     Id = Guid.NewGuid(),
@@ -20,7 +21,15 @@ namespace ServiceLayer.Companies
                     Name = "Google",
                     Web = "www.google.com"
                 }
-            });
+            };
+            var result = new PaginationResult<CompanyOveralDTO>()
+            {
+                Items = items,
+                TotalItemCount = items.Count,
+                PageNumber = 1,
+                PageSize = 10,
+            };
+            return await Task.FromResult(result);
         }
     }
 }

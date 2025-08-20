@@ -34,7 +34,7 @@ export class CompanyCardActivitiesComponent {
   private translateService = inject(TranslateService);
   private subscription = new Subscription();
   getCompanyInfo = inject(ROUTER_OUTLET_DATA) as Signal<CompanyInfo>;
-  companyId = this.getCompanyInfo().customerId;
+  companyId = this.getCompanyInfo().id;
   customerPrimaryContactId = this.getCompanyInfo().companyPrimaryContactId;
   isShowAll = true;
   activities: ActivityCardView[] = [];

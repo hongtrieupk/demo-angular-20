@@ -17,6 +17,7 @@ import { PagingOptions } from '../../../../core/api-clients/pagination.model';
 import { CompanyClient } from '../../../../core/api-clients/company/company.client';
 import { mapPrimengSortEnumToSortDirectionEnum } from '../../../../core/enums/table.enum';
 import { ToastService } from '../../../@shared/components/toast/toast.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-company-card-sales',
@@ -38,14 +39,15 @@ export class CompanyCardSalesComponent {
   private getCompanyInfo = inject(ROUTER_OUTLET_DATA) as Signal<CompanyInfo>;
   private translateService = inject(TranslateService);
   private toastService = inject(ToastService);
-  companyId = this.getCompanyInfo().customerId;
+  private subscription = new Subscription();
+  companyId = this.getCompanyInfo().id;
   isShowAll = true;
   includeDeleted = false;
   deals: DealCardView[] = [];
   upSellings: UpSellingCardView[] = [];
   dealColumns = dealColumns;
   upSellingTableCols = upSellingCols;
-
+  sumTotal = 0;
   pagingOptions: PagingOptions = {
     pageSize: 20,
     pageNumber: 1,
@@ -54,6 +56,11 @@ export class CompanyCardSalesComponent {
   constructor(private companyClient: CompanyClient) {
     this.getDeals();
     this.getUpsellings();
+  }
+  calculatSumTotal(deals: DealCardView[]): number {
+    return deals.reduce((accumulator, current) => {
+      return accumulator + current.totalPrice;
+    }, 0);
   }
   onToggleShowAll(): void {
     this.getDeals();
@@ -106,10 +113,11 @@ export class CompanyCardSalesComponent {
           this.includeDeleted,
           this.pagingOptions,
         );
-    const subscription = activities$.subscribe((result) => {
+    this.subscription = activities$.subscribe((result) => {
       this.deals = result.items;
       this.totalRecords = result.totalItemCount;
-      subscription.unsubscribe();
+      this.sumTotal = this.calculatSumTotal(result.items);
+      this.subscription.unsubscribe();
     });
   }
 

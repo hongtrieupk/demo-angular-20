@@ -23,9 +23,6 @@ import { CheckboxModule } from 'primeng/checkbox';
 import {
   TableHeaderCheckboxToggleEvent,
   TableModule,
-  TableRowExpandEvent,
-  TableRowSelectEvent,
-  TableRowUnSelectEvent,
   TableSelectAllChangeEvent,
 } from 'primeng/table';
 import {
@@ -57,7 +54,7 @@ import {
 } from '../../../../core/enums/table.enum';
 
 @Component({
-  selector: 'up-table',
+  selector: 'app-table',
   imports: [
     TableModule,
     CheckboxModule,
@@ -95,7 +92,6 @@ export class TableComponent<TRowData> {
   showColumnHeader = input<boolean>(true);
   showColumnsSelection = input<boolean>(true);
   showActionColumn = input<boolean>(true);
-  showRowsSelectionByCheckbox = input<boolean>(false);
   stripedRows = input<boolean>(false);
   totalRecords = input<number>();
   page = input<number>(0); // page start from 0
@@ -112,18 +108,12 @@ export class TableComponent<TRowData> {
   showGiftButton = input<boolean>(false);
   showLeftButton = input<boolean>(false);
   showRightButton = input<boolean>(false);
-  showMoveRowButton = input<boolean>(false);
-  showAddNewRowButton = input<boolean>(false);
-  showReloadButton = input<boolean>(false);
 
   sortMode = input<'single' | 'multiple'>('single');
   sortByClient = input<boolean>(false);
   lazy = input<boolean>(true);
   rowHover = input<boolean>(true);
   dataKey = input<string>();
-  enableRowExpansion = input<boolean>(false);
-  expandedRowKeys = input<Record<string, boolean>>();
-  rowExpandMode = input<'multiple' | 'single'>('multiple');
   rowClasses = input<
     | string
     | ((row: TRowData, rowIndex: number) => string | Record<string, boolean>)
@@ -133,31 +123,21 @@ export class TableComponent<TRowData> {
    * output
    */
   onClickedEditButton = output<TRowData>();
-  onClickedSaveButton = output<TRowData>();
-  onClickedCancelEditButton = output<TRowData>();
   onClickedDeleteButton = output<TRowData>();
   onClickedGiftButton = output<TRowData>();
   onClickedLeftButton = output<TRowData>();
   onClickedRightButton = output<TRowData>();
-  onClickedAddNewRowButton = output<void>();
-  onClickedSaveNewRowsButton = output<void>();
-  onClickedCancelNewRowsButton = output<void>();
-  onClickedReloadButton = output<void>();
   onPageChange = output<PaginatorState>();
 
   onHeaderCheckboxToggle = output<TableHeaderCheckboxToggleEvent>();
-  onRowSelect = output<TableRowSelectEvent<TRowData>>();
-  onRowUnSelect = output<TableRowUnSelectEvent<TRowData>>();
   onSelectAllChange = output<TableSelectAllChangeEvent>();
   onSelectionChange = output<any>();
   onSort = output<SortOptions>();
   onColumnsSelectionChange = output<Columns<TRowData>>();
-  onRowExpand = output<TableRowExpandEvent<TRowData>>();
 
   //#region Templates
   actionButtonsTemplateRef = contentChild<TemplateRef<any>>('actionButtons');
   footerTemplateRef = contentChild<TemplateRef<any>>('tableFooter');
-  expandedRowTemplateRef = contentChild<TemplateRef<any>>('expandedrow');
   cellTemplateRefCheckbox = viewChild.required<TemplateRef<CheckboxInputs>>(
     'cellTemplateCheckbox',
   );
@@ -178,16 +158,10 @@ export class TableComponent<TRowData> {
   );
   bodyCellTemplateRef = contentChild<TemplateRef<any>>('bodyCell');
   emptyMessageTemplateRef = contentChild<TemplateRef<any>>('emptyMessage');
-  cellEditorTextTemplateRef =
-    viewChild.required<TemplateRef<any>>('bodyCellEditorText');
-  bodyCellEditorTemplateRef = contentChild<TemplateRef<any>>('bodyCellEditor');
 
   //#endregion Templates
 
   selectedColumns: Column<TRowData>[] = [];
-
-  private injector = inject(Injector);
-  private renderer = inject(Renderer2);
   private datePipe = inject(DatePipe);
   private datePipeDefaultOptions: DatePipeConfig & { dateTimeFormat?: string } =
     inject(DATE_PIPE_DEFAULT_OPTIONS);
@@ -277,9 +251,7 @@ export class TableComponent<TRowData> {
   getTotalColumnCount() {
     return (
       this.columns().length +
-      (this.showActionColumn() || this.showColumnsSelection() ? 1 : 0) +
-      (this.showRowsSelectionByCheckbox() ? 1 : 0) +
-      (this.enableRowExpansion() ? 1 : 0)
+      (this.showActionColumn() || this.showColumnsSelection() ? 1 : 0)
     );
   }
 

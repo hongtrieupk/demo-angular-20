@@ -9,20 +9,6 @@ export class ToastService {
     private messageService = inject(MessageService);
     private translateService = inject(TranslateService);
 
-    saveSuccessfully() {
-        this.messageService.add({
-            severity: 'success',
-            summary: this.translateService.instant('Message.DataSavedSuccess'),
-        });
-    }
-
-    deleteSuccessfully() {
-        this.messageService.add({
-            severity: 'success',
-            summary: this.translateService.instant('Message.DataDeleteSuccess'),
-        });
-    }
-
     success(message: string) {
         this.messageService.add({
             severity: 'success',

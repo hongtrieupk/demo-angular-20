@@ -40,7 +40,7 @@ export class CompanyCardWorkOrdersComponent {
   private getCompanyInfo = inject(ROUTER_OUTLET_DATA) as Signal<CompanyInfo>;
   private companyClient = inject(CompanyClient);
   private datePipe = inject(DatePipe);
-  companyId = this.getCompanyInfo().customerId;
+  companyId = this.getCompanyInfo().id;
   workOrderColumns = workOrderColumns;
   statusOptions = [
     { label: 'Not started', value: 1 },

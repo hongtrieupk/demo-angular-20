@@ -1,6 +1,15 @@
 <h4>
-   <a>{{ 'Company.Companies' | translate }}</a>
+  <a>{{ 'Company.Companies' | translate }}</a>
 </h4>
 <div class="gap-2 table-container">
-
+  <div class="pt-[10px]">
+    <app-table
+      [columns]="columns"
+      [data]="companies"
+      name="company-list-table"
+      [rows]="20"
+      [lazy]="false"
+    >
+    </app-table>
+  </div>
 </div>

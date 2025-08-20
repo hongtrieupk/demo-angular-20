@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ServiceLayer.Common;
 using ServiceLayer.Companies;
 using ServiceLayer.DTOs;
 
@@ -10,9 +11,9 @@ namespace Web.API.Controllers.v1
     {
         private readonly ICompaniesService _companyService = companyService;
         [HttpGet("")]
-        public async Task<IEnumerable<CompanyOveralDTO>> SearchCompany(CancellationToken cancellationToken)
+        public async Task<PaginationResult<CompanyOveralDTO>> SearchCompany(CancellationToken cancellationToken)
         {
-           return await _companyService.SearchCompany(cancellationToken);
+           return await _companyService.SearchCompanies(cancellationToken);
         }
     }
 }

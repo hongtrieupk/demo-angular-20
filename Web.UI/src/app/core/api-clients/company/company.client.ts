@@ -9,16 +9,27 @@ import { DealActivityTypesEnum } from '../../enums/deal-activity-types.enum';
 import { WorkOrderCardView } from './models/work-order-card-view.model';
 import { UpSellingCardView } from './models/upselling-card-view.model';
 import { DealCardView } from './models/deal-card-view.model';
+import { CompanyOveralInfo } from './models/company-overal-info.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CompanyClient {
   private httpClient = inject(HttpClient);
+  getCompanies(
+    pagingOption: PagingOptions,
+  ): Observable<PaginationResult<CompanyOveralInfo>> {
+    const url = `companies`;
+    return this.httpClient.get<PaginationResult<CompanyOveralInfo>>(url, {
+      params: {
+        ...pagingOption,
+      },
+    });
+  }
 
   getById(id: string): Observable<CompanyInfo> {
     const mockCompanyInfos: CompanyInfo = {
-      customerId: '6489930d-9caa-420a-b096-f1602e771e45',
+      id: '6489930d-9caa-420a-b096-f1602e771e45',
       name: 'ABC Custard',
       comment:
         '<i><u></u></i>Alle innkjøp skal avtales med<br><b style="color: #e26a6a">Test</b><br>',
