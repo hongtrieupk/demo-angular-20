@@ -1,7 +1,5 @@
 import { Routes } from '@angular/router';
 import { LayoutComponent } from './layout/layout/layout.component';
-import { CompanyCardsResolver } from './modules/companies/company-cards/company-cards.resolver';
-import { Companies } from './modules/companies/companies';
 
 export const routes: Routes = [
   {

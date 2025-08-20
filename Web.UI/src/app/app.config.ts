@@ -18,12 +18,14 @@ import {
   TranslatePipe,
   TranslateService,
 } from '@ngx-translate/core';
-import { HttpClient, provideHttpClient, withFetch } from '@angular/common/http';
+import { HttpClient, provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { createMultiTranslateLoader } from './core/i18n';
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeng/themes/aura';
 import { MessageService } from 'primeng/api';
 import { DATE_PIPE_DEFAULT_OPTIONS, DatePipeConfig } from '@angular/common';
+import { apiResponseHttpInterceptor } from './interceptors/api-response.interceptor';
+import { apiHttpInterceptor } from './interceptors/api.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -37,7 +39,10 @@ export const appConfig: ApplicationConfig = {
       }),
     ]),
     MessageService,
-    provideHttpClient(withFetch()),
+    provideHttpClient(
+      withFetch(),
+      withInterceptors([apiHttpInterceptor, apiResponseHttpInterceptor]),
+    ),
     provideAnimationsAsync(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes, withPreloading(PreloadAllModules)),

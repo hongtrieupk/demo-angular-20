@@ -1,4 +1,4 @@
-import { ContactCardView } from "../../../../core/api-clients/company/contact-card-view.model";
+import { ContactCardView } from "../../../../core/api-clients/company/models/contact-card-view.model";
 import { Column } from "../../../@shared/components/table/column.model";
 
 

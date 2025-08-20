@@ -4,7 +4,7 @@ import { catchError, throwError } from 'rxjs';
 import { apiInterceptorConfigToken } from './http-context';
 import { Injector } from '@angular/core';
 import { Error5xxService } from '../modules/@shared/components/errors/error-5xx/error-5xx.service';
-import { ErrorNoInternetPopupService } from '../modules/@shared/components/error-no-internet-popup/error-no-internet-popup.service';
+import { ErrorNoInternetPopupService } from '../modules/@shared/components/errors/error-no-internet-popup/error-no-internet-popup.service';
 import { ToastService } from '../modules/@shared/components/toast/toast.service';
 
 export const apiResponseHttpInterceptor: HttpInterceptorFn = (req, next) => {

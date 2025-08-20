@@ -1,4 +1,4 @@
-import { DealActivityTypesEnum } from '../../enums/deal-activity-types.enum';
+import { DealActivityTypesEnum } from '../../../enums/deal-activity-types.enum';
 
 export interface ActivityCardView {
   activityId: string;

@@ -11,8 +11,8 @@ import { TableComponent } from '../../../@shared/components/table/table.componen
 import { isEmptyGuid } from '../../../../core/ultis/string-utils';
 import { DealActivityTypesEnum } from '../../../../core/enums/deal-activity-types.enum';
 import { PagingOptions } from '../../../../core/api-clients/pagination.model';
-import { ActivityCardView } from '../../../../core/api-clients/company/activity-card-view.model';
-import { CompanyInfo } from '../../../../core/api-clients/company/company-info.model';
+import { ActivityCardView } from '../../../../core/api-clients/company/models/activity-card-view.model';
+import { CompanyInfo } from '../../../../core/api-clients/company/models/company-info.model';
 import { CompanyClient } from '../../../../core/api-clients/company/company.client';
 import { Subscription } from 'rxjs';
 

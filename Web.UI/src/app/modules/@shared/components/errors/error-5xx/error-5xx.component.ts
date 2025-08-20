@@ -4,7 +4,6 @@ import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { Error5xxService } from './error-5xx.service';
 import { UpperCasePipe } from '@angular/common';
-import { DialogDirective } from '../../../directives/dialog.directive';
 
 @Component({
     selector: 'app-error-5xx',
@@ -12,8 +11,7 @@ import { DialogDirective } from '../../../directives/dialog.directive';
         DialogModule,
         TranslatePipe,
         ButtonModule,
-        UpperCasePipe,
-        DialogDirective,
+        UpperCasePipe
     ],
     templateUrl: './error-5xx.component.html',
     styleUrl: './error-5xx.component.scss',

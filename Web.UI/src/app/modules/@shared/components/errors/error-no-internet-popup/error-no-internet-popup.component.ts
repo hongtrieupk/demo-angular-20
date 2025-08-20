@@ -10,7 +10,6 @@ import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { UpperCasePipe } from '@angular/common';
 import { ErrorNoInternetPopupService } from './error-no-internet-popup.service';
-import { DialogDirective } from '../../directives/dialog.directive';
 
 @Component({
     selector: 'app-error-no-internet-popup',
@@ -19,7 +18,6 @@ import { DialogDirective } from '../../directives/dialog.directive';
         TranslatePipe,
         ButtonModule,
         UpperCasePipe,
-        DialogDirective,
     ],
     templateUrl: './error-no-internet-popup.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,

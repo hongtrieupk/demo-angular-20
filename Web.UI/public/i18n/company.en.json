@@ -46,8 +46,8 @@
     "Deals": "Deals",
     "Upselling": "Upselling",
     "AddActivity": "Add Activity",
-    "Type": "Type other",
-    "ActivitiesAndNotes": "Activities & Notes ot",
+    "Type": "Type",
+    "ActivitiesAndNotes": "Activities & Notes",
     "TakeNotes": "Take notes",
     "Address": "Address",
     "Address2": "Address 2",
@@ -83,6 +83,7 @@
     "LastActivity": "Last Activity",
     "SMSAlert": "SMS Alert",
     "MobilePhone": "MobilePhone",
-    "Title": "Title"
+    "Title": "Title",
+    "Web": "Web"
   }
 }

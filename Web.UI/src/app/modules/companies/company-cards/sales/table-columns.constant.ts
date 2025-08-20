@@ -1,5 +1,5 @@
-import { DealCardView } from "../../../../core/api-clients/company/deal-card-view.model";
-import { UpSellingCardView } from "../../../../core/api-clients/company/upselling-card-view.model";
+import { DealCardView } from "../../../../core/api-clients/company/models/deal-card-view.model";
+import { UpSellingCardView } from "../../../../core/api-clients/company/models/upselling-card-view.model";
 import { Column } from "../../../@shared/components/table/column.model";
 
 export const dealColumns: Column<DealCardView>[] = [

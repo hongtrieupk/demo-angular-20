@@ -1,6 +1,6 @@
 import { Component, Input, Signal, inject } from '@angular/core';
 import { ROUTER_OUTLET_DATA } from '@angular/router';
-import { CompanyInfo } from '../../../../core/api-clients/company/company-info.model';
+import { CompanyInfo } from '../../../../core/api-clients/company/models/company-info.model';
 import { PanelModule } from 'primeng/panel';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 

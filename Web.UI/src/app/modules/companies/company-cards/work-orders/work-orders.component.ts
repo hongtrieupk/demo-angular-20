@@ -15,8 +15,8 @@ import { WorkOrderStatusEnum } from '../../../../core/enums/work-order-status.en
 import { CompanyClient } from '../../../../core/api-clients/company/company.client';
 import { SelectOption } from '../../../../core/api-clients/select-option';
 import { PagingOptions } from '../../../../core/api-clients/pagination.model';
-import { WorkOrderCardView } from '../../../../core/api-clients/company/work-order-card-view.model';
-import { CompanyInfo } from '../../../../core/api-clients/company/company-info.model';
+import { WorkOrderCardView } from '../../../../core/api-clients/company/models/work-order-card-view.model';
+import { CompanyInfo } from '../../../../core/api-clients/company/models/company-info.model';
 import { DATE_FORMAT, mapPrimengSortEnumToSortDirectionEnum } from '../../../../core/enums/table.enum';
 
 @Component({

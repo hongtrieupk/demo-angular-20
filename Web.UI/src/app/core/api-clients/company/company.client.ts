@@ -1,14 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { map, Observable, of } from 'rxjs';
-import { CompanyInfo } from './company-info.model';
-import { ContactCardView } from './contact-card-view.model';
+import { CompanyInfo } from './models/company-info.model';
+import { ContactCardView } from './models/contact-card-view.model';
 import { PaginationResult, PagingOptions } from '../pagination.model';
-import { ActivityCardView } from './activity-card-view.model';
+import { ActivityCardView } from './models/activity-card-view.model';
 import { DealActivityTypesEnum } from '../../enums/deal-activity-types.enum';
-import { WorkOrderCardView } from './work-order-card-view.model';
-import { UpSellingCardView } from './upselling-card-view.model';
-import { DealCardView } from './deal-card-view.model';
+import { WorkOrderCardView } from './models/work-order-card-view.model';
+import { UpSellingCardView } from './models/upselling-card-view.model';
+import { DealCardView } from './models/deal-card-view.model';
 
 @Injectable({
   providedIn: 'root',

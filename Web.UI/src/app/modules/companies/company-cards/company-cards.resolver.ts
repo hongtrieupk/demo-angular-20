@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot } from '@angular/router';
-import { CompanyInfo } from '../../../core/api-clients/company/company-info.model';
+import { CompanyInfo } from '../../../core/api-clients/company/models/company-info.model';
 import { CompanyClient } from '../../../core/api-clients/company/company.client';
 import { Observable } from 'rxjs';
 
