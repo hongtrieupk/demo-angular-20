@@ -1,0 +1,77 @@
+$border-color: rgba(119, 140, 162, 0.27);
+$gray: #6c6f71;
+$condition-form-height: 30px;
+$light-blue: #e7ecef;
+:host {
+    width: 100%;
+}
+
+.option-wrapper {
+    border: 2px solid $border-color;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+    background-color: white;
+
+    .field-select {
+        width: 100%;
+    }
+    .arrow-down {
+        color: $border-color;
+        position: absolute;
+        top: -1px;
+        right: 6px;
+        cursor: pointer;
+        i {
+            position: absolute;
+            right: 1px;
+            top: 5px;
+            font-size: 15px;
+            color: $gray
+        }
+    }
+    ::ng-deep .mat-form-field-appearance-fill .mat-form-field-infix {
+        padding: 0 !important;
+    }
+    ::ng-deep .mat-form-field-infix {
+        width: 100%;
+        padding: 0 !important;
+    }
+    ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+        min-height: $condition-form-height - 4;
+        background-color: white;
+        padding: 0 !important;
+    }
+    ::ng-deep .mat-select-value {
+        padding-top: 3px;
+        padding-left: 3px;
+    }
+}
+
+.hint {
+    padding-left: 15px;
+    padding-top: 12px;
+    height: 42px;
+    display: block;
+    opacity: 0.5;
+}
+
+::ng-deep .cdk-overlay-container .cdk-overlay-pane .single-select-custom {
+    max-height: 500px;
+    min-width: 300px !important;
+}
+::ng-deep .single-select-custom .mat-form-field-wrapper {
+    padding: 0;
+}
+
+::ng-deep .single-select-custom .mat-form-field {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    background-color: white;
+
+    .mat-form-field-flex {
+        background-color: $light-blue;
+    }
+}

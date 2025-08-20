@@ -1,0 +1,47 @@
+<mat-form-field [class]="!isShowAsButton ? 'chips-container' : 'chips-button-container'" [style]="isHidden ? 'height: 0;' : ''">
+    <div *ngIf="!isHidden">
+        <h2 class="chip-title-text" *ngIf="!isShowAsButton">{{title}}</h2>
+        <mat-chip-grid *ngIf="!isShowAsButton; else elseBlock" #chipList aria-label="Data selection">
+            <mat-chip-row *ngFor="let item of selectedData" [removable]="true"
+                (removed)="removeItem(item)" [matTooltip]="item.value">
+                <div class="chips__text">{{item.value}}</div>
+                <mat-icon matChipRemove>cancel</mat-icon>
+            </mat-chip-row>
+            <mat-chip-row class="circle-chip" (click)="showMultipleSelectChips()">+</mat-chip-row>
+        </mat-chip-grid>
+        <ng-template #elseBlock>
+            <mat-chip-grid #chipList aria-label="Data selection">
+                <button (click)="showMultipleSelectChips()">
+                    <span class="plus">&#43;</span> {{('role.add' | translate).toUpperCase()}}
+                </button>
+            </mat-chip-grid>
+        </ng-template>
+    </div>
+    <mat-select #matSelect panelClass="multiple-select-custom" (closed)="onCancel()" class="multiple-select-custom"
+        multiple [formControl]="multipleSelectControl">
+        <mat-select-trigger><span></span></mat-select-trigger>
+        <mat-form-field appearance="fill">
+            <input #searchInput autocomplete="off" (keydown.escape)="matSelect.close()" (input)="onSearchChange($event)"
+                (keydown)="$event.stopPropagation()" matInput placeholder="Type to search"
+                [(ngModel)]="searchValue">
+            <button *ngIf="searchValue" matSuffix mat-icon-button aria-label="Clear" (click)="onClearSearchClick()">
+                <mat-icon>close</mat-icon>
+            </button>
+            <mat-icon *ngIf="!searchValue" matSuffix>search</mat-icon>
+        </mat-form-field>
+        <div class="options">
+            <cdk-virtual-scroll-viewport #virtualScrollViewport [itemSize]="pageSize" [style.height.px]="getHeight()">
+                <em class="hint" *ngIf="!filteredData.length">{{'picklist.hint.no.item' | translate}}</em>
+                <mat-option hidden></mat-option>
+                <mat-option *cdkVirtualFor="let item of filteredData" [value]="item.id" class="option"
+                    (click)="toggleSelection(item)" [ngStyle]="{ display: 'flex' }">
+                    {{item.value}}
+                </mat-option>
+            </cdk-virtual-scroll-viewport>
+        </div>
+        <div class="btn-wrapper">
+            <mat-icon class="circle-chip material-icons-outlined btn-cancel" (click)="onCancel()">close</mat-icon>
+            <mat-icon class="circle-chip material-icons-outlined btn-confirm" (click)="onConfirm()">done</mat-icon>
+        </div>
+    </mat-select>
+</mat-form-field>

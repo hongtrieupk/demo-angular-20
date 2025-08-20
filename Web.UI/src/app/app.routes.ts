@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { LayoutComponent } from './layout/layout/layout.component';
+import { DemoComponents } from './modules/demo-components/demo-components';
 
 export const routes: Routes = [
   {
@@ -13,6 +14,10 @@ export const routes: Routes = [
             (m) => m.COMPANY_ROUTES,
           ),
       },
+      {
+        path: 'demo-components',
+        component: DemoComponents
+      }
     ],
   },
   { path: '**', redirectTo: '/companies' },

@@ -1,0 +1,58 @@
+<div
+  class="option-wrapper"
+  [ngStyle]="
+    singleSelectControl.hasError('required')
+      ? { border: '1px solid #f44336' }
+      : {}
+  "
+>
+  <mat-form-field appearance="fill" class="field-select">
+    <mat-select
+      #matSelect
+      [formControl]="singleSelectControl"
+      panelClass="single-select-custom"
+      [required]="isRequired"
+      placeholder="select an item"
+      matTooltip="{{ selectedItem?.value }}"
+      (selectionChange)="onSelectItem($event.value)"
+      [ngModel]="selectedItem"
+      (openedChange)="onOpenedChangeMatSelect($event)"
+    >
+      <mat-form-field appearance="fill">
+        <input
+          #searchInput
+          autocomplete="off"
+          (input)="onSearchChange()"
+          (keydown)="$event.stopPropagation()"
+          matInput
+          placeholder="Type to search"
+          [(ngModel)]="searchValue"
+        />
+        <button
+          *ngIf="searchValue"
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="onClearSearchClick()"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+        <mat-icon *ngIf="!searchValue" matSuffix>search</mat-icon>
+      </mat-form-field>
+      <div class="options">
+        <em class="hint" *ngIf="!filteredData.length">{{
+          "picklist.hint.no.item" | translate
+        }}</em>
+        <mat-option hidden></mat-option>
+        <mat-option
+          *ngFor="let item of filteredData"
+          [value]="item"
+          class="option"
+          [ngStyle]="{ display: 'flex' }"
+        >
+          {{ item?.value }}
+        </mat-option>
+      </div>
+    </mat-select>
+  </mat-form-field>
+</div>

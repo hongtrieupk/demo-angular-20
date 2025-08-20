@@ -1,0 +1,96 @@
+$grey-color: rgba(119, 140, 162, 0.27);
+$blue_color: blue;
+$border-color: #d2d3d4;
+$red_error: #f44336;
+$condition-form-height: 30px;
+$gray: #6c6f71;
+.condition-form {
+    .active-condition {
+        background-color: $blue_color !important;
+    }
+    .input-wrapper {
+        border: 2px solid $border-color;
+        height: 100%;
+        background-color: white;
+    }
+    .error-date-time {
+        font-size: small;
+        margin-left: 5px;
+        color: red;
+    }
+    .menu-button {
+        padding-top: 5px;
+        background-color: $grey-color;
+        width: $condition-form-height;
+        height: $condition-form-height;
+        min-width: unset !important;
+        display: flex !important;
+        justify-content: center;
+        border-radius: 0;
+        border: 2px solid #d2d3d4;
+        cursor: auto;
+    }
+
+    .add-button {
+        font-size: 20px;
+        margin-left: 3px;
+        margin-top: 5px;
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+    }
+    .icon {
+        color: rgba(59, 64, 75, 0.79);
+        font-size: 14px !important;
+    }
+    .full-width {
+        width: 100%;
+    }
+
+    .delete-button {
+        width: $condition-form-height;
+        height: $condition-form-height;
+        border: 2px solid rgba(119, 140, 162, 0.27);
+        margin-left: auto;
+    }
+
+    .has-error {
+        border: 1px solid $red_error;
+    }
+
+    input:focus {
+        outline: none;
+    }
+    .novalue-placeholder {
+        background-color: $border-color;
+        width: 100%;
+    }
+
+    .flex-container {
+        display: flex;
+    }
+    .col-2 {
+        padding: 0;
+    }
+    .col-4 {
+        padding: 0;
+    }
+    .col-6 {
+        padding: 0;
+    }
+    // hide arrow for input type number
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    input[type="number"] {
+        -moz-appearance: textfield;
+    }
+    ::ng-deep .mat-select-arrow {
+        color: $gray !important;
+    }
+}

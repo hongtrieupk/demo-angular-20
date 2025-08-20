@@ -1,0 +1,190 @@
+<div class="conditions-table" *ngIf="!!fields?.length">
+  <strong>Conditions</strong>
+  <span class="create-condition" (click)="createLastCondition()">+ Create</span>
+  <form class="mt-1">
+    <mat-form-field class="form-field">
+      <label style="margin-bottom: 0">
+        <input
+          type="text"
+          class="input-search"
+          matInput
+          [formControl]="optionControl"
+          [matAutocomplete]="auto"
+          #inputTag
+        />
+      </label>
+      <mat-icon class="search-icon" matPrefix>search</mat-icon>
+      <mat-icon matSuffix class="arrow-down">arrow_drop_down</mat-icon>
+      <mat-autocomplete
+        class="autocomplete"
+        #auto="matAutocomplete"
+        (optionSelected)="selected($event)"
+      >
+        <mat-option
+          *ngFor="let condition of dropdownConditions"
+          [value]="condition"
+        >
+          {{ condition.getDisplayCondition }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+  <div class="row mt-2">
+    <div class="col-4 pl-6">
+      <strong>Field</strong>
+    </div>
+    <div class="col-2 pl-4">
+      <strong>Operator</strong>
+    </div>
+    <div class="col-6 pl-4">
+      <strong>Value</strong>
+    </div>
+  </div>
+  <div class="mt-1" *ngFor="let condition of selectedConditions; let i = index">
+    <div
+      class="connectors"
+      *ngIf="i !== 0 && !isHideConnectors(condition.connector)"
+      [@fadeInOut]
+      (@fadeInOut.done)="animationDone()"
+    >
+      <div class="break-connector-icon"></div>
+      <span
+        [ngClass]="getOrClass(condition.connector)"
+        (click)="onOrCondition(condition)"
+        >OR
+      </span>
+      <span class="ml-1 mr-1">|</span>
+      <span
+        [ngClass]="getAndClass(condition.connector)"
+        #connectorHtml
+        (click)="onAndCondition(condition, connectorHtml)"
+        >AND
+      </span>
+      <span class="ml-1 mr-1">|</span>
+      <div
+        class="arrow-wrapper"
+        (click)="addSubCondition(i)"
+        *ngIf="showAddSubCondtionIcon(condition)"
+      >
+        <mat-icon class="arrow-mat-icon">east</mat-icon
+        ><strong style="position: absolute; right: 0">|</strong>
+      </div>
+    </div>
+    <div class="condition-form-wrapper">
+      <svg class="svg">
+        <line
+          [class]="getConnectorLineClass()"
+          [id]="getBreakConnectorLineId(i)"
+        />
+      </svg>
+      <div class="break-connector-icon">
+        <div
+          class="link-icon"
+          *ngIf="showBreakConnectorIcon(selectedConditions, i)"
+          [id]="getBreakConnectorIconId(i)"
+        >
+          <i
+            class="fa fa-times-circle"
+            aria-hidden="true"
+            (click)="breakConnector(condition, i)"
+            *ngIf="shouldShouldBreakIcon(i, condition.connector)"
+          ></i>
+          <i
+            class="fa fa-circle"
+            aria-hidden="true"
+            [style]="
+              !shouldShouldBreakIcon(i, condition.connector)
+                ? 'display: inline-block; cursor: auto;'
+                : ''
+            "
+          ></i>
+        </div>
+      </div>
+      <div class="w-100">
+        <app-condition-form
+          [fields]="fields"
+          [condition]="condition"
+          (changeCondition)="onChangeConditions()"
+          (deleteCondition)="onDeleteCondition(condition)"
+          (addNew)="insertNewCondition(selectedConditions, condition)"
+        >
+        </app-condition-form>
+      </div>
+    </div>
+    <div class="sub-conditions" *ngIf="!!condition.conditions?.length">
+      <div
+        class="ml-4 mt-1"
+        *ngFor="let subCondition of condition.conditions; let j = index"
+      >
+        <div
+          class="connectors"
+          *ngIf="!isHideConnectors(subCondition.connector) || j === 0"
+          [@fadeInOut]
+          (@fadeInOut.done)="animationDone()"
+        >
+          <div class="break-connector-icon"></div>
+          <ng-container *ngIf="j !== 0">
+            <span
+              [ngClass]="getOrClass(subCondition.connector)"
+              (click)="onOrCondition(subCondition)"
+              >OR
+            </span>
+            <span class="ml-1 mr-1">|</span>
+          </ng-container>
+          <span
+            [ngClass]="getAndClass(subCondition.connector)"
+            #connectorHtml
+            (click)="onAndCondition(subCondition, connectorHtml)"
+            >AND
+          </span>
+          <span class="ml-1 mr-1">|</span>
+          <div class="arrow-wrapper" (click)="removeSubCondition(j, condition)">
+            <strong>|</strong>
+            <mat-icon class="arrow-mat-icon">west</mat-icon>
+          </div>
+        </div>
+        <div class="condition-form-wrapper">
+          <svg class="svg">
+            <line
+              [class]="getConnectorLineClass()"
+              [id]="getBreakSubConnectorLineId(i, j)"
+            />
+          </svg>
+          <div class="break-connector-icon">
+            <div
+              class="link-icon"
+              *ngIf="showBreakConnectorIcon(condition.conditions, j)"
+              [id]="getBreakSubConnectorIconId(i, j)"
+            >
+              <i
+                class="fa fa-times-circle"
+                aria-hidden="true"
+                (click)="breakConnector(subCondition, j)"
+                *ngIf="shouldShouldBreakIcon(j, subCondition.connector)"
+              ></i>
+              <i
+                class="fa fa-circle"
+                aria-hidden="true"
+                [style]="
+                  !shouldShouldBreakIcon(j, subCondition.connector)
+                    ? 'display: inline-block; cursor: auto;'
+                    : ''
+                "
+              ></i>
+            </div>
+          </div>
+          <div class="w-100">
+            <app-condition-form
+              [fields]="fields"
+              [condition]="subCondition"
+              (changeCondition)="onChangeConditions()"
+              (deleteCondition)="deleteSubCondition(subCondition, condition)"
+              (addNew)="insertNewCondition(condition.conditions, subCondition)"
+            >
+            </app-condition-form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

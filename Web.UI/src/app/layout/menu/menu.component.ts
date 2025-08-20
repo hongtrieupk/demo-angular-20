@@ -27,7 +27,7 @@ export class MenuComponent {
                         label: 'R&D Department',
                         icon: 'pi pi-fw pi-building',
                         routerLink: [
-                            '/companies',
+                            '/demo-components',
                         ],
                     },
                 ],

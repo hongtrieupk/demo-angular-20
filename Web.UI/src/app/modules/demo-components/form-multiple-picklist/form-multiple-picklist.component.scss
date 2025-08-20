@@ -1,0 +1,37 @@
+$border-color: rgba(119, 140, 162, 0.27);
+$condition-form-height: 30px;
+:host {
+    width: 100%;
+}
+.option-wrapper {
+    border: 2px solid $border-color;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+    background-color: white;
+
+    .multi-select-input {
+        cursor: pointer;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        margin-left: 3px;
+    }
+
+    ::ng-deep .mat-form-field-appearance-fill .mat-form-field-infix {
+        padding: 0 !important;
+    }
+    ::ng-deep .mat-form-field-infix {
+        width: 100%;
+        padding: 0 !important;
+    }
+    ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+        min-height: $condition-form-height - 4;
+        background-color: white;
+        padding: 0 !important;
+    }
+    ::ng-deep .mat-select-value {
+        padding-top: 3px;
+        padding-left: 3px;
+    }
+}

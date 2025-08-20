@@ -1,0 +1,220 @@
+$base-width: 350px;
+$light-blue: #e7ecef;
+$base-width: 350px;
+$border-color: #d2d3d4;
+$gray: #6c6f71;
+$blue_color: #0083b4;
+$gray5: #d2d3d4;
+
+:host {
+    display: inline-block;
+}
+.chips-container {
+    width: 100% !important;
+}
+.multiselect-container {
+    width: $base-width;
+    margin-top: 5px;
+}
+.search-input {
+    border-bottom: 1px solid black;
+    min-width: $base-width;
+    max-width: $base-width;
+}
+::ng-deep .multiple-select-custom .mat-form-field-wrapper {
+    padding: 0;
+}
+
+::ng-deep .multiple-select-custom .mat-form-field {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    background-color: white;
+
+    .mat-form-field-flex {
+        background-color: $light-blue;
+    }
+}
+.multiple-select-custom {
+    visibility: hidden;
+    height: 1px;
+}
+
+::ng-deep .cdk-virtual-scroll-content-wrapper {
+    max-width: 340px;
+}
+
+::ng-deep .cdk-overlay-container .cdk-overlay-pane .multiple-select-custom {
+    max-height: 500px;
+    min-width: 365px !important;
+}
+
+::ng-deep .mat-option-text:hover {
+    overflow: visible;
+    text-overflow: unset;
+}
+
+.circle-chip {
+  width: 46px;
+  justify-content: center;
+}
+
+// override css
+::ng-deep .mat-form-field-underline {
+    display: none;
+}
+
+::ng-deep .multiple-select-custom .mat-select-arrow-wrapper {
+    display: none;
+}
+
+::ng-deep .mat-chip.mat-standard-chip {
+    max-width: 100%;
+    background-color: white;
+    border: 1px solid $border-color;
+    height: 46px;
+    border-radius: 35px;
+}
+
+::ng-deep {
+  .mat-chip-list-wrapper {
+    width: 100% !important;
+    margin: 0;
+    padding-right: 5px;
+  }
+}
+
+.chips__text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chips-button-container {
+    ::ng-deep .mat-form-field-wrapper {
+        padding-bottom: 0;
+    }
+
+    ::ng-deep .mat-form-field-wrapper .mat-form-field-flex .mat-form-field-infix {
+        padding: 0;
+        border-top: 0;
+    }
+    ::ng-deep .mat-form-field-wrapper .mat-form-field-flex .mat-form-field-infix .mat-chip-list-wrapper {
+        justify-content: flex-end;
+        margin: 0;
+    }
+
+    ::ng-deep .mat-form-field-wrapper .mat-form-field-flex {
+        margin-bottom: -15px;
+    }
+
+    ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+        overflow: hidden;
+    }
+}
+
+button {
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    border-radius: 20px;
+    border: 0;
+    background: $blue_color;
+    color: #fff;
+    font-size: 11px;
+    letter-spacing: 1px;
+    font-weight: 300;
+    padding: 8px 25px;
+    line-height: 21px;
+  
+    &:disabled {
+      background: #e0e0e0;
+    }
+  
+    i {
+      margin-right: 10px;
+    }
+  
+    .plus {
+      margin-right: 8px;
+      font-size: 20px;
+    }
+}
+
+.hint {
+    padding-left: 15px;
+    padding-top: 15px;
+    height: 48px;
+    display: block;
+    opacity: 0.5;
+}
+
+.options {
+    overflow: auto;
+    max-height: 350px;
+    min-height: 0px;
+
+    & ::ng-deep .mat-selected {
+        background: $light-blue;
+        color: rgba(0,0,0,.87) !important;
+    }
+}
+
+.max-width-tooltip {
+    max-width: unset !important;
+  }
+
+.chip-title-text {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+::ng-deep .mat-form-field-infix {
+  width: 100%;
+}
+
+.option {
+    flex-direction: row-reverse;
+    margin: 5px 0;
+
+    & ::ng-deep .mat-pseudo-checkbox {
+        border: none;
+        margin: 0;
+
+        &::after {
+            color: $gray
+        }
+    }
+
+    & ::ng-deep .mat-option-pseudo-checkbox.mat-pseudo-checkbox-checked {
+        background: none;
+    }
+}
+
+.btn-wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 15px 10px;
+    box-shadow: 0 -1px 0px 2px rgb(115 115 115 / 22%);
+    margin-top: 5px;
+
+    .material-icons-outlined {
+        cursor: pointer;
+        font-size: 20px;
+        background-color: white;
+        border: 1px solid #d2d3d4;
+        border-radius: 5px;
+        padding: 4px 4px;
+        width: 30px;
+    }
+
+    .btn-confirm {
+        background-color: $blue_color;
+        color: white;
+    }
+
+    .btn-cancel {
+        background-color: $gray5;
+    }
+}

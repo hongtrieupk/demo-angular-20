@@ -32,6 +32,8 @@
               }
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/font-awesome-scss/css/font-awesome.min.scss",
               "src/styles.scss"
             ],
             "scripts": []

@@ -1,0 +1,12 @@
+<div style="height: 30px;">
+    <div class="option-wrapper" (click)="openSelectPanel(multiplePicklist)"
+        [ngStyle]="multipleSelectControl.hasError('required') ? {'border': '1px solid #f44336'} : {}">
+        <mat-form-field appearance="fill" style="width: 100%;">
+            <input #inputSelect readonly class="multi-select-input" matInput [formControl]="multipleSelectControl"
+                [matTooltip]="getDisplayValues()">
+            <div class="mat-select-arrow" matSuffix></div>
+        </mat-form-field>
+    </div>
+    <app-multiple-picklist #multiplePicklist [datasource]="datasource" [selectedData]="selectedOptions"
+        [isHidden]="true" (selectionChange$)="onChangeValues($event)"></app-multiple-picklist>
+</div>
