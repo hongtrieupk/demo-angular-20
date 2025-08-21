@@ -11,11 +11,9 @@ import {
   computed,
   contentChild,
   inject,
-  Injector,
   input,
   model,
   output,
-  Renderer2,
   TemplateRef,
   viewChild,
 } from '@angular/core';

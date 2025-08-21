@@ -309,14 +309,4 @@
     {{ getDefaultCellContent(row, column) }}
   </span>
 </ng-template>
-
-<ng-template
-  #bodyCellEditorText
-  let-row="row"
-  let-column="column"
-  let-value="value"
-  let-onChange="onChange"
->
-  <input pInputText [value]="value" (change)="onChange($event.target.value)" />
-</ng-template>
 <ng-content></ng-content>
